@@ -9,3 +9,9 @@ def login(request):
 
 def signup(request):
     return render(request, "uweflix/signup.html")
+
+def tickets(request):
+    return render(request, "uweflix/tickets.html")
+
+def checkout(request):
+    return render(request, "uweflix/checkout.html")
