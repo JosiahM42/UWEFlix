@@ -15,3 +15,9 @@ def tickets(request):
 
 def checkout(request):
     return render(request, "uweflix/checkout.html")
+
+def cinemaAdmin(request):
+    return render(request, "uweflix/cinemaAdmin.html")
+
+def accountAdmin(request):
+    return render(request, "uweflix/accountAdmin.html")
