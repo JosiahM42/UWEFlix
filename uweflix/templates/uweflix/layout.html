@@ -7,12 +7,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'uweflix/site.css' %}"/>
 </head>
 
-<body>
+<body class ="body">
 <div class="navbar">
-    <a href="{% url 'home' %}" class="navbar-brand">Home</a>
-    <a href="{% url 'log' %}" class="navbar-item">Log Message</a>
     <a href="{% url 'login' %}" class="navbar-item">Login</a>
+    <a href="{% url 'home' %}" class="navbar-item">Home</a>
     <a href="{% url 'signup' %}" class="navbar-item">Sign up</a>
+    
 </div>
 
 <div class="body-content">
@@ -20,7 +20,7 @@
     {% endblock %}
     <hr/>
     <footer>
-        <p>© 2022</p>
+        <p>© Group 8, 2022</p>
     </footer>
 </div>
 </body>

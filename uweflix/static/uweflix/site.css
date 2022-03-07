@@ -3,11 +3,12 @@
     color: blue;
 }
 .navbar {
-    background-color: lightslategray;
+    background-color: black;
     font-size: 1em;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     color: white;
-    padding: 8px 5px 8px 5px;
+    padding: 10px 5px 10px 5px;
+    text-align: center;
 }
 
 .navbar a {
@@ -15,9 +16,16 @@
     color: inherit;
 }
 
+.navbar a:hover {
+    background-color: #f47579;
+    padding: 10px 5px 10px 5px;
+  }
+
 .navbar-brand {
-    font-size: 1.2em;
-    font-weight: 600;
+    font-size: 1em;
+    /* font-weight: 600; */
+    padding: 10px 5px 10px 5px;
+    text-align: center;
 }
 
 .navbar-item {
@@ -25,7 +33,27 @@
     margin-left: 30px;
 }
 
-.body-content {
-    padding: 5px;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+.body{
+    background-color: lightgray;
 }
+
+.body-content {
+    /* padding: 5px; */
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px 5px 10px 5px;
+
+}
+
+.ticketButton{
+    background-color: black;
+    display: inline-block;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+
+}
+
+.ticketButton :visited {
+    color: white;
+}
+
