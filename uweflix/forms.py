@@ -8,3 +8,4 @@ venues= [('uwe', 'UWE')
 
 class venueForm(forms.Form):
    choseVenue = forms.CharField(label='Choose a Venue: ', widget=forms.Select(choices=venues))
+

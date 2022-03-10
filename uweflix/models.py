@@ -38,7 +38,7 @@ class Ticket(models.Model):
     showing_id = models.ForeignKey(Showing, on_delete=models.CASCADE)
 
 class Account(models.Model):
-    username =  models.CharField(max_length=12)
+    username = models.CharField(max_length=12)
     password = models.CharField(max_length=12)
 
 class CinemaAdmin(models.Model):
@@ -82,7 +82,8 @@ class AccountAdmin(models.Model):
     club_discount = models.BooleanField(False)
 
 
-
+class Token(models.Model):
+    quantity = models.IntegerField(default=0)
 
 
 
