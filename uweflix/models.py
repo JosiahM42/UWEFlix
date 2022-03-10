@@ -84,6 +84,8 @@ class AccountAdmin(models.Model):
 
 class Token(models.Model):
     quantity = models.IntegerField(default=0)
+    purchased_datetime =  models.DateTimeField("date logged")
+
 
 
 
