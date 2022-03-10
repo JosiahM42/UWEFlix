@@ -21,3 +21,6 @@ def cinemaAdmin(request):
 
 def accountAdmin(request):
     return render(request, "uweflix/accountAdmin.html")
+
+def studentAccount(request):
+    return render(request, "uweflix/studentAccount.html")

@@ -3,39 +3,46 @@
     color: blue;
 }
 .navbar {
-    background-color: black;
+    background-color:  #a9a9a9;
     font-size: 1em;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    color: white;
-    padding: 10px 5px 10px 5px;
+    color: #151515;
+   /* padding: 10px 5px 10px 5px; */
     text-align: center;
 }
-
+/*background-color: #e8242c; #1a181d;*/
 .navbar a {
     text-decoration: none;
     color: inherit;
 }
 
-.navbar a:hover {
-    background-color: #f47579;
-    padding: 10px 5px 10px 5px;
-  }
-
 .navbar-brand {
     font-size: 1em;
     /* font-weight: 600; */
-    padding: 10px 5px 10px 5px;
+    /* padding: 10px 5px 10px 5px; */
     text-align: center;
 }
 
 .navbar-item {
     font-variant: small-caps;
     margin-left: 30px;
+    margin-right: 30px;
 }
 
+.navbar .navbar-item:hover {
+    background-color: black;
+    color: white;
+    /* padding: 10px 5px 10px 5px; */
+  }
+
+.navbar-logo{
+    display: inline-block;
+    padding-top: 1em;
+}
 
 .body{
-    background-color: lightgray;
+    background-color: #2f2c34;
+    color: white;
 }
 
 .body-content {
@@ -57,3 +64,8 @@
     color: white;
 }
 
+.account-icon {
+    display: inline-block;
+    align-self: right;
+
+}
