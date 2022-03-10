@@ -4,4 +4,12 @@ Sign Up
 {% endblock %}
 {% block content %}
 <p>Sign up page for the UWEFlix cinema booking system.</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+<button type="submit">Sign Up</button>
+
+
+
 {% endblock %}
