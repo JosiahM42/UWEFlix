@@ -5,13 +5,6 @@ Login
 {% block content %}
 <p>Login page for the UWEFlix cinema booking system.</p>
 
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-<button type="submit">Log In</button>
-
-
-
 
 <a href="{% url 'cinemaAdmin' %}" class="navbar-item">Cinema Admin</a>
 <a href="{% url 'accountAdmin' %}" class="navbar-item">Account Admin</a>
