@@ -8,6 +8,12 @@ class Film(models.Model):
     age_rating =  models.CharField(max_length=4)
     duration = models.TimeField()
 
+    def __str__(self):
+        """Returns a string representation of a message."""
+        
+        return "{self.message}"
+
+
 class Venue(models.Model):
     name =  models.CharField(max_length=25)
     street_address = models.CharField(max_length=100)
@@ -85,7 +91,6 @@ class AccountAdmin(models.Model):
 class Token(models.Model):
     quantity = models.IntegerField(default=0)
     purchased_datetime =  models.DateTimeField("date logged")
-
 
 
 

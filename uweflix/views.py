@@ -1,5 +1,15 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import *
+
+#Forms 
+from uweflix.forms import addFilmForm
+
+#models
+from uweflix.models import Film
+
+from django.shortcuts import redirect
+from django.views.generic import ListView
+
 
 def home(request):
     return render(request, "uweflix/home.html")
@@ -24,3 +34,19 @@ def accountAdmin(request):
 
 def studentAccount(request):
     return render(request, "uweflix/studentAccount.html")
+
+
+def addFilm(request):
+
+    form = addFilmForm(request.POST or None)
+
+    if request.method == "POST":
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.save()
+            return redirect("cinemaAdmin")
+    else:
+        return render(request, "uweflix/cinemaAdmin.html", {"form": form})
+
+
+
