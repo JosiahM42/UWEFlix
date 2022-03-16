@@ -3,27 +3,12 @@
 Home
 {% endblock %}
 {% block content %}
-<p>Welcome the cinema admin page for the UWEFlix cinema booking system.</p>
+    <p>Welcome the cinema admin page for the UWEFlix cinema booking system.</p>
 
-<!-- Old Form code KEEP FOR NOW REMOVE IN CLEAN UP -->
-<!-- <form action="addFilm" method="post">
-    <label for="addFilm"> Films Title: </label>
-    <input id="filmName" type="text" name="your_name" value="{{ current_name }}">
-
-    <label for="addFilm"> Film Description: </label>
-    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
-
-    <label for="addFilm"> Age Rating: </label>
-    <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
-
-    <label for="addFilm"> Duration: </label>
-    <input id="duration" type="text" name="your_name" value="{{ current_name }}">
-</form> -->
-
-<form method="POST" class="addFilmForm">
-    {% csrf_token %}
-    {{ addFilmForm }}
-    <input type="submit" value="Add Film">
-</form>
+    <form method="POST" class="addFilm">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add Film">
+        </form>
 
 {% endblock %}

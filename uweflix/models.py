@@ -1,17 +1,26 @@
 from django.db import models
 from django.utils import timezone
 
+import uuid
+
+
+Age_rating_UK= [
+    ('U','U'),
+    ('PG','PG'),
+    ('12A','12A'),
+    ('12','12'),
+    ('15','15'),
+    ('18','18'),
+    ]
+
 class Film(models.Model):
-    # film_id = models.AutoField(primary_key=True)
+    filmID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=250)
-    age_rating =  models.CharField(max_length=4)
-    duration = models.TimeField()
+    age_rating =  models.CharField(max_length=3, choices=Age_rating_UK)
+    duration = models.TimeField(max_length=4)
 
-    def __str__(self):
-        """Returns a string representation of a message."""
-        
-        return "{self.message}"
+
 
 
 class Venue(models.Model):
@@ -94,5 +103,3 @@ class Token(models.Model):
 
 
 
-
-    

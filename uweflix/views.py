@@ -8,7 +8,7 @@ from uweflix.forms import addFilmForm
 from uweflix.models import Film
 
 from django.shortcuts import redirect
-from django.views.generic import ListView
+
 
 
 def home(request):
@@ -37,7 +37,6 @@ def studentAccount(request):
 
 
 def addFilm(request):
-
     form = addFilmForm(request.POST or None)
 
     if request.method == "POST":
