@@ -2,7 +2,7 @@ from email import message
 from django import forms
 from uweflix.models import Film
 
-from django.forms import ModelForm, TextInput, EmailInput
+from django.forms import  TextInput
 
 
 # venues= [('uwe', 'UWE')
@@ -28,12 +28,7 @@ class addFilmForm(forms.ModelForm):
                 'style': 'max-width: 300px;',
                 'placeholder': 'whats the film about?'
                 }),
-                # 'age_rating': TextInput(attrs={
-                # 'class': "form-control",
-                # 'style': 'max-width: 300px;',
-                # 'placeholder': 'Am I going to be called a bad uncle for letting my nephew see this film'
-                # }),
-                'duration': EmailInput(attrs={
+                'duration': TextInput(attrs={
                 'class': "form-control",
                 'style': 'max-width: 300px;',
                 'placeholder': 'Eg, 1:30:30'

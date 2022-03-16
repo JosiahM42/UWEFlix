@@ -22,7 +22,6 @@ class Film(models.Model):
 
 
 
-
 class Venue(models.Model):
     name =  models.CharField(max_length=25)
     street_address = models.CharField(max_length=100)
