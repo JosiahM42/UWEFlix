@@ -2,7 +2,7 @@ from email import message
 from django import forms
 from uweflix.models import Film
 
-from django.forms import  TextInput
+from django.forms import  TextInput, Textarea
 
 
 # venues= [('uwe', 'UWE')
@@ -19,17 +19,17 @@ class addFilmForm(forms.ModelForm):
                 #Styles Form boxes
                 widgets = {
                 'title': TextInput(attrs={
-                'class': "form-control",
+                'class': "addFilmsForm",
                 'style': 'max-width: 300px;',
                 'placeholder': 'Film Title'
                 }),
-                'description': TextInput(attrs={
-                'class': "form-control",
+                'description': Textarea(attrs={
+                'class': "addFilmsForm",
                 'style': 'max-width: 300px;',
                 'placeholder': 'whats the film about?'
                 }),
                 'duration': TextInput(attrs={
-                'class': "form-control",
+                'class': "addFilmsForm",
                 'style': 'max-width: 300px;',
                 'placeholder': 'Eg, 1:30:30'
                 })

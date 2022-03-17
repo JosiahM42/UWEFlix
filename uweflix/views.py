@@ -63,5 +63,9 @@ def deleteFilm(request, film_id):
 
      return redirect("allFilms")
 
+# Gets all films in the system to be displayed
+def getAllFilms(request):
 
+    filmList = Film.objects.all()
 
+    return render (request, 'uweflix/allFilms.html', {'filmList': filmList})
