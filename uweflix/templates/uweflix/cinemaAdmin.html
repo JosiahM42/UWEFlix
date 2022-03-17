@@ -5,6 +5,12 @@ Home
 {% block content %}
     <p>Welcome the cinema admin page for the UWEFlix cinema booking system.</p>
 
+    <a href="{% url 'addFilms' %}" class="navbar-item">Add a Film</a>
+
+    <a href="{% url 'allFilms' %}" class="navbar-item">View All Films</a>
+
+
+
     <form method="POST" class="addFilm">
         {% csrf_token %}
         {{ form.as_p }}
