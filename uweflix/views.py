@@ -69,3 +69,16 @@ def getAllFilms(request):
     filmList = Film.objects.all()
 
     return render (request, 'uweflix/allFilms.html', {'filmList': filmList})
+
+
+def amendFilm(request, id):
+
+    film = Film.objects.get(pk=id)
+    form = addFilmForm(request.POST or None, instance=film)
+    if form.is_valid():
+        form.save()
+        return redirect("allFilms")
+    
+    else:
+        return render(request, "uweflix/amendFilms.html", {"film": film, "form": form})
+    

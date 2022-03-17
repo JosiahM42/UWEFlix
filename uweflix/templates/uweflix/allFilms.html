@@ -23,11 +23,16 @@ All Films
             <li>{{ film.duration }}</li>
         </p>
 
-        <a href="{% url 'home' %}">Amend</a>
+        </div>
 
-        <a href="{% url 'deleteFilm' film.id %}">Delete Film</a>
+        <div class="card-footer text-muted">
+
+            <a href="{% url 'amendFilm' film.id %}">Amend</a>
+
+            <a href="{% url 'deleteFilm' film.id %}">Delete Film</a>
 
         </div>
+
     </div>
 
     <br>

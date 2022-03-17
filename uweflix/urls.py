@@ -8,7 +8,7 @@ urlpatterns = [
     path("addFilms/", views.addFilm, name="addFilm"),
     path("allFilms/", views.getAllFilms, name="addFilm"),
     path("deleteFilm/<id>", views.deleteFilm, name="deleteFilm"),
-
+    path("amendFilm/<id>", views.amendFilm, name="amendFilm"),
 
 
     path("", views.home, name="home"),
