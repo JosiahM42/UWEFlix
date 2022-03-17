@@ -10,11 +10,4 @@ Home
     <a href="{% url 'allFilms' %}" class="navbar-item">View All Films</a>
 
 
-
-    <form method="POST" class="addFilm">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Add Film">
-        </form>
-
 {% endblock %}

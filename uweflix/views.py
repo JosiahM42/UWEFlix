@@ -52,7 +52,7 @@ def addFilm(request):
             message.save()
             return redirect("cinemaAdmin")
     else:
-        return render(request, "uweflix/cinemaAdmin.html", {"form": form})
+        return render(request, "uweflix/addFilms.html", {"form": form})
 
 
 # deletes film on request
