@@ -55,4 +55,13 @@ def addFilm(request):
         return render(request, "uweflix/cinemaAdmin.html", {"form": form})
 
 
+# deletes film on request
+def deleteFilm(request, film_id):
+
+     film = Film.objects.get(pk=film_id)
+     film.delete()
+
+     return redirect("allFilms")
+
+
 
