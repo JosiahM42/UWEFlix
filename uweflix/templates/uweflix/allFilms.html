@@ -6,6 +6,32 @@ All Films
 
     <p>Welcome to the films page for the UWEFlix cinema booking system. Amend and delete films as you see fit.</p>
 
-    {{ filmList }}
+
+
+    <h2>Films List</h2>
+
+{% for film in filmList %}
+
+    <div class="card">
+        <div class="card-header">
+            <strong>{{ film.title }}</strong>
+        </div>
+        <div class="card-body">
+        <p class="card-text">
+            <li>{{ film.description }}</li>
+            <li>{{ film.age_rating }}</li>
+            <li>{{ film.duration }}</li>
+        </p>
+
+        <a href="{% url 'home' %}">Amend</a>
+
+        <a href="{% url 'deleteFilm' film.id %}">Delete Film</a>
+
+        </div>
+    </div>
+
+    <br>
+
+    {% endfor %}
 
 {% endblock %}

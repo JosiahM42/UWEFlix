@@ -14,11 +14,11 @@ Age_rating_UK= [
     ]
 
 class Film(models.Model):
-    filmID = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=250)
     age_rating =  models.CharField(max_length=3, choices=Age_rating_UK)
-    duration = models.TimeField(max_length=4)
+    duration = models.TimeField(max_length=8)
 
 
 

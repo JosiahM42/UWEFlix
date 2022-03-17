@@ -6,7 +6,8 @@ urlpatterns = [
     #form url
     # Note!!!!!! all form stuff must got at the top as django looks for each page top to bottom, so form version of page must go above and take priority 
     path("addFilms/", views.addFilm, name="addFilm"),
-
+    path("allFilms/", views.getAllFilms, name="addFilm"),
+    path("deleteFilms/<id>", views.deleteFilm, name="deleteFilm"),
 
 
 

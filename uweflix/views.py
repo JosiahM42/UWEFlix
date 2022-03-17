@@ -56,9 +56,9 @@ def addFilm(request):
 
 
 # deletes film on request
-def deleteFilm(request, film_id):
+def deleteFilm(request, id):
 
-     film = Film.objects.get(pk=film_id)
+     film = Film.objects.get(pk=id)
      film.delete()
 
      return redirect("allFilms")
