@@ -35,14 +35,21 @@ def accountAdmin(request):
 def studentAccount(request):
     return render(request, "uweflix/studentAccount.html")
 
-
 def addFilms (request):
     return render(request, "uweflix/addFilms.html")
 
 def allFilms (request):
     return render(request, "uweflix/allFilms.html")
 
+def addVenues (request):
+    return render(request, "uweflix/addVenues.html")
 
+def allVenues (request):
+    return render(request, "uweflix/allVenues.html")
+
+
+#Film Details CRUD
+# Add films from form
 def addFilm(request):
     form = addFilmForm(request.POST or None)
 

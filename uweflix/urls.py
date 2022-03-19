@@ -21,6 +21,8 @@ urlpatterns = [
     path("studentAccount/", views.studentAccount, name="studentAccount"),
     path("addFilms/", views.addFilms, name="addFilms"),
     path("allFilms/", views.allFilms, name="allFilms"),
+    path("addVenues/", views.addVenues, name="addVenues"),
+    path("allVenues/", views.allVenues, name="allVenues"),
 
 
 

@@ -18,17 +18,19 @@ class Film(models.Model):
     title = models.CharField(max_length=50)
     description = models.CharField(max_length=250)
     age_rating =  models.CharField(max_length=3, choices=Age_rating_UK)
-    duration = models.TimeField(max_length=8)
+    duration = models.DurationField(max_length=8)
 
 
 
 class Venue(models.Model):
+    venue_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     name =  models.CharField(max_length=25)
     street_address = models.CharField(max_length=100)
     postcode = models.CharField(max_length=7)
     city = models.CharField(max_length=20)
 
 class Screen(models.Model):
+    screen_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     capacity = models.IntegerField()
     is_full = models.BooleanField()
     venue_id = models.ForeignKey(Venue, on_delete=models.CASCADE)
@@ -36,17 +38,18 @@ class Screen(models.Model):
 
 class Seat(models.Model):
     screen_id = models.ForeignKey(Screen, on_delete=models.CASCADE)
+    seat_number = models.IntegerField()
     seat_type = models.CharField(max_length=50)
 
 
 class Showing(models.Model):
-    # showing_id = models.AutoField(primary_key=True)
+    showing_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     showing_datetime = models.DateTimeField("date logged")
     film_id = models.ForeignKey(Film, on_delete=models.CASCADE)
     screen_id = models.ForeignKey(Screen, on_delete=models.CASCADE)
 
 class Ticket(models.Model):
-    # ticket_id = models.AutoField(primary_key=True)
+    ticket_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     ticket_price = models.FloatField()
     ticket_type = models.CharField(max_length=10)
     showing_id = models.ForeignKey(Showing, on_delete=models.CASCADE)
