@@ -1,6 +1,6 @@
 from email import message
 from django import forms
-from uweflix.models import Film
+from uweflix.models import Film, Venue
 
 from django.forms import  TextInput, Textarea
 
@@ -32,6 +32,34 @@ class addFilmForm(forms.ModelForm):
                 'class': "addFilmsForm",
                 'style': 'max-width: 300px;',
                 'placeholder': 'Eg, 1:30:30'
+                })
+        }
+
+class addVenueForm(forms.ModelForm):
+        class Meta:
+                model = Venue
+                fields = ("name","street_address", "postcode", "city",) #
+                
+                #Styles Form boxes
+                widgets = {
+                'name': TextInput(attrs={
+                'class': "addVenueForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Venue name'
+                }),
+                'street_address': TextInput(attrs={
+                'class': "addVenueForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Full address'
+                }),'postcode': TextInput(attrs={
+                'class': "addVenueForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Eg BS16 1WE'
+                }),
+                'city': TextInput(attrs={
+                'class': "addVenueForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Eg Bristol'
                 })
         }
 

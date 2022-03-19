@@ -1,18 +1,18 @@
 {% extends "uweflix/layout.html" %}
 {% block title %}
-Add a Film
+Amend Venue
 {% endblock %}
 {% block content %}
 
 <p>Welcome to the amend films for the UWEFlix cinema booking system. Please amend the selected film</p>
 
-<form method="POST" class="updateFilm">
+<form method="POST" class="updateVenue">
     
     {% csrf_token %}
     <table class="addingForms">
     {{ form }} 
     </table>
-    <input type="submit" value="Update Film">
+    <input type="submit" value="Update venue">
     </form>
 
 {% endblock %}

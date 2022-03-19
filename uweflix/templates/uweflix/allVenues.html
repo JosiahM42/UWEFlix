@@ -4,31 +4,28 @@ All Venues
 {% endblock %}
 {% block content %}
 
-    <p>Welcome to the Venues page for the UWEFlix cinema booking system. Amend and delete Venues as you see fit.</p>
+    <p>Welcome to the venues page for the UWEFlix cinema booking system. Amend and delete venues as you see fit.</p>
 
 
 
-    <h2>Venues List</h2>
+    <h2>Venue List</h2>
 
-{% for film in filmList %}
+{% for venue in venueList %}
 
     <div class="card">
         <div class="card-header">
-            <strong>{{ film.title }}</strong>
+            <strong>{{ venue.name }}</strong>
         </div>
         <div class="card-body">
         <p class="card-text">
-            <!-- <li>Film Description:  {{ film.description }}</li>
-            <li>Age Rating:  {{ film.age_rating }}</li>
-            <li>Film Length:  {{ film.duration }}</li> -->
-
-            Film Description:  {{ film.description }}
+            
+            Street Address:  {{ venue.street_address }}
             <br>
-            Age Rating:  {{ film.age_rating }}
+            Postcode:  {{ venue.postcode }}
             <br>
-            Film Length:  {{ film.duration }}
+            City:  {{ venue.city }}
             <br>
-
+          
 
         </p>
 
@@ -36,9 +33,9 @@ All Venues
 
         <div class="card-footer text-muted">
 
-            <a class="amendButtons" href="{% url 'amendFilm' film.id %}">Amend</a>
+            <a class="amendButtons" href="{% url 'amendVenues' venue.venue_id %}">Amend</a>
 
-            <a class="deleteButtons" href="{% url 'deleteFilm' film.id %}">Delete Film</a>
+            <a class="deleteButtons" href="{% url 'deleteVenues' venue.venue_id %}">Delete Venue</a>
 
         </div>
 

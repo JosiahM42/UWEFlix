@@ -20,13 +20,11 @@ class Film(models.Model):
     age_rating =  models.CharField(max_length=3, choices=Age_rating_UK)
     duration = models.DurationField(max_length=8)
 
-
-
 class Venue(models.Model):
     venue_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     name =  models.CharField(max_length=25)
     street_address = models.CharField(max_length=100)
-    postcode = models.CharField(max_length=7)
+    postcode = models.CharField(max_length=8)
     city = models.CharField(max_length=20)
 
 class Screen(models.Model):
