@@ -9,7 +9,10 @@
     color: #151515;
    /* padding: 10px 5px 10px 5px; */
     text-align: center;
+    
+    border-radius: 5px;
 }
+
 /*background-color: #e8242c; #1a181d;*/
 .navbar a {
     text-decoration: none;
@@ -67,9 +70,8 @@
 }
 
 .account-icon {
-    display: inline-block;
-    align-self: right;
-
+    align-self: center;
+    float: right;
 }
 
 .addingForms {
@@ -77,6 +79,7 @@
     
 }
 
+/* Buttons */
 .amendButtons,
 .deleteButtons,
 .cinemaAdminButtons{

@@ -4,14 +4,6 @@ from uweflix.models import Film, Venue
 
 from django.forms import  TextInput, Textarea
 
-
-# venues= [('uwe', 'UWE')
-#         ('temp', 'temp')]
-
-# class venueForm(forms.Form):
-#    choseVenue = forms.CharField(label='Choose a Venue: ', widget=forms.Select(choices=venues))
-
-
 class addFilmForm(forms.ModelForm):
         class Meta:
                 model = Film
