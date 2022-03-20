@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
+
 from django.conf import settings
 
 
@@ -41,6 +42,7 @@ class Ticket(models.Model):
     showing_id = models.ForeignKey(Showing, on_delete=models.CASCADE)
 
 class Account(AbstractUser):
+
     # email = models.EmailField(max_length=254, unique=True)
 
     # is_cinema_admin = models.BooleanField(default=False)
