@@ -1,5 +1,9 @@
 from django.db import models
 from django.utils import timezone
+from django.contrib.auth.models import AbstractUser
+
+from django.conf import settings
+
 
 import uuid
 
@@ -52,12 +56,22 @@ class Ticket(models.Model):
     ticket_type = models.CharField(max_length=10)
     showing_id = models.ForeignKey(Showing, on_delete=models.CASCADE)
 
-class Account(models.Model):
-    username = models.CharField(max_length=12)
-    password = models.CharField(max_length=12)
+class Account(AbstractUser):
+
+    # email = models.EmailField(max_length=254, unique=True)
+
+    # is_cinema_admin = models.BooleanField(default=False)
+    # is_cinema_accounts = models.BooleanField(default=False)
+    # is_club = models.BooleanField(default=False)
+    # is_active = models.BooleanField(default=True)
+
+    # USERNAME_FIELD = 'email'
+    # REQUIRED_FIELD = ['username'
+    pass
+    
 
 class CinemaAdmin(models.Model):
-    account_id = models.ForeignKey(Account, on_delete=models.CASCADE)
+    account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     is_social_distancing = models.BooleanField()
 
 class Customer(models.Model):
@@ -76,7 +90,7 @@ class Club(models.Model):
     city = models.CharField(max_length=20)
     phone = models.IntegerField()
     landline = models.IntegerField()
-    account_id = models.ForeignKey(Account, on_delete=models.CASCADE)
+    account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
 
 class Booking(models.Model):
@@ -93,13 +107,10 @@ class Statements(models.Model):
     account_id = models.ForeignKey(Account, on_delete=models.CASCADE)
 
 class AccountAdmin(models.Model):
-    account_id = models.ForeignKey(Account, on_delete=models.CASCADE)
+    account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     club_discount = models.BooleanField(False)
 
 
 class Token(models.Model):
     quantity = models.IntegerField(default=0)
     purchased_datetime =  models.DateTimeField("date logged")
-
-
-
