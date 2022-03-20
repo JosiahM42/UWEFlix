@@ -1,0 +1,135 @@
+.message {
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+}
+.navbar {
+    background-color:  #c7c6c6;
+    font-size: 1em;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: #151515;
+   /* padding: 10px 5px 10px 5px; */
+    text-align: center;
+    
+    border-radius: 5px;
+}
+
+/*background-color: #e8242c; #1a181d;*/
+.navbar a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.navbar-brand {
+    font-size: 1em;
+    /* font-weight: 600; */
+    /* padding: 10px 5px 10px 5px; */
+    text-align: center;
+}
+
+.navbar-item {
+    font-variant: small-caps;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 1.5em;
+    color: red
+}
+
+.navbar .navbar-item:hover {
+    background-color: #2F3238;
+    color: white;
+    /* padding: 10px 5px 10px 5px; */
+  }
+
+.navbar-logo{
+    display: inline-block;
+    padding-top: 1em;
+}
+
+.body{
+    background-color: #2F3238;
+    color: white;
+}
+
+.footer-content {
+    /* padding: 5px; */
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 10px 5px 10px 5px;
+
+}
+
+.ticketButton{
+    background-color: black;
+    display: inline-block;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: white;
+
+}
+
+.ticketButton :visited {
+    color: white;
+}
+
+.account-icon {
+    align-self: center;
+    float: right;
+}
+
+.addingForms {
+    vertical-align: top;
+    
+}
+
+/* Buttons */
+.amendButtons,
+.deleteButtons,
+.cinemaAdminButtons{
+    align-items: center;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: #151515;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui,-apple-system,system-ui,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+}
+
+.amendButtons,
+.deleteButtons,
+.cinemaAdminButtons{
+    background-color:  #c7c6c6;
+}
+
+.deleteButtons:hover,
+.deleteButtons:focus{
+  background-color: #e8242c;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+.amendButtons:hover,
+.deleteButtons:hover,
+.cinemaAdminButtons:hover {
+  transform: translateY(-1px);
+}
+
+/* .addAndAmendButtons:active {
+  background-color: #c85000;
+  box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
+  transform: translateY(0);
+} */

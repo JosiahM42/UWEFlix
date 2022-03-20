@@ -1,0 +1,47 @@
+{% extends "uweflix/layout.html" %}
+{% block title %}
+All Venues
+{% endblock %}
+{% block content %}
+
+    <p>Welcome to the venues page for the UWEFlix cinema booking system. Amend and delete venues as you see fit.</p>
+
+
+
+    <h2>Venue List</h2>
+
+{% for venue in venueList %}
+
+    <div class="card">
+        <div class="card-header">
+            <strong>{{ venue.name }}</strong>
+        </div>
+        <div class="card-body">
+        <p class="card-text">
+            
+            Street Address:  {{ venue.street_address }}
+            <br>
+            Postcode:  {{ venue.postcode }}
+            <br>
+            City:  {{ venue.city }}
+            <br>
+          
+        </p>
+
+        </div>
+
+        <div class="card-footer text-muted">
+
+            <a class="amendButtons" href="{% url 'amendVenues' venue.venue_id %}">Amend</a>
+
+            <a class="deleteButtons" href="{% url 'deleteVenues' venue.venue_id %}">Delete Venue</a>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    {% endfor %}
+
+{% endblock %}

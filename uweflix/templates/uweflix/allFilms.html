@@ -1,0 +1,51 @@
+{% extends "uweflix/layout.html" %}
+{% block title %}
+All Films
+{% endblock %}
+{% block content %}
+
+    <p>Welcome to the films page for the UWEFlix cinema booking system. Amend and delete films as you see fit.</p>
+
+
+
+    <h2>Films List</h2>
+
+{% for film in filmList %}
+
+    <div class="card">
+        <div class="card-header">
+            <strong>{{ film.title }}</strong>
+        </div>
+        <div class="card-body">
+        <p class="card-text">
+            <!-- <li>Film Description:  {{ film.description }}</li>
+            <li>Age Rating:  {{ film.age_rating }}</li>
+            <li>Film Length:  {{ film.duration }}</li> -->
+
+            Film Description:  {{ film.description }}
+            <br>
+            Age Rating:  {{ film.age_rating }}
+            <br>
+            Film Length:  {{ film.duration }}
+            <br>
+
+
+        </p>
+
+        </div>
+
+        <div class="card-footer text-muted">
+
+            <a class="amendButtons" href="{% url 'amendFilm' film.id %}">Amend</a>
+
+            <a class="deleteButtons" href="{% url 'deleteFilm' film.id %}">Delete Film</a>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    {% endfor %}
+
+{% endblock %}
