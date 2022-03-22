@@ -9,16 +9,44 @@ from uweflix.models import *
 
 from django.shortcuts import redirect
 
+#  from django.contrib import messages
+
+from django.contrib.auth.forms import UserCreationForm
+
+from django.contrib.auth import authenticate, login, logout
+
 
 
 def home(request):
     return render(request, "uweflix/home.html")
 
-def login(request):
+def loginRequest(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        attemptedUser =  authenticate(request, username=username, password=password)
+
+        if attemptedUser is not None:
+            login(request, attemptedUser)
+            return redirect('studentAccount')
+        
     return render(request, "uweflix/login.html")
 
-def signup(request):
-    return render(request, "uweflix/signup.html")
+def signupRequest(request):
+    #form = UserCreationForm()
+    form = signUpForm()
+    context = {'form': form}
+
+    if request.method == 'POST':
+        form = signUpForm(request.POST)
+        # form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # messageUser = form.cleaned_data.get('username')
+            # messages.success(request, 'New user account has been created')
+
+    return render(request, "uweflix/signup.html", context)
 
 def tickets(request):
     return render(request, "uweflix/tickets.html")
@@ -131,3 +159,11 @@ def amendVenue(request, venue_id):
     
     else:
         return render(request, "uweflix/amendVenues.html", {"Venue": venue, "form": form})
+
+
+# User Account Views
+# def signUpRequest(request):
+#     form = signUpForm()
+#     context = {'form': form}
+#     return render(request, "uweflix/signup.html", context)
+        

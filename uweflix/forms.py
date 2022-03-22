@@ -1,8 +1,24 @@
 from email import message
 from django import forms
-from uweflix.models import Film, Venue
+from uweflix.models import Film, Venue, Account
+from django.contrib.auth.forms import UserCreationForm
 
 from django.forms import  TextInput, Textarea
+
+class signUpForm(UserCreationForm): 
+        #email = forms.EmailField(required=True)
+
+        class Meta:
+                model = Account
+                # fields = "__all__"
+                fields =('username','email', 'password1', 'password2', 'is_club')
+
+                # if email were to be used as the unique identifier
+                # fields = ('email', 'password1', 'password2', 'is_club')
+
+
+        
+
 
 class addFilmForm(forms.ModelForm):
         class Meta:
