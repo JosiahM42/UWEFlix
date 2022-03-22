@@ -1,0 +1,19 @@
+{% extends "uweflix/layout.html" %}
+{% block title %}
+Add a Screen
+{% endblock %}
+{% block content %}
+
+<p>Welcome to the Add screens for the UWEFlix cinema booking system. Please add a screen to a selected venue</p>
+    
+    <form method="POST" class="addScreen">
+    {% csrf_token %}
+    <table class="addFilmsForm">
+    {{ form }} 
+    </table>
+    <input type="submit" value="Add Screen">
+    </form>
+
+    <br>
+
+{% endblock %}

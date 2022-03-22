@@ -75,6 +75,12 @@ def addVenues (request):
 def allVenues (request):
     return render(request, "uweflix/allVenues.html")
 
+def addScreen (request):
+    return render(request, "uweflix/addScreen.html")
+
+def allScreen (request):
+    return render(request, "uweflix/allScreen.html")
+
 
 #Film Details CRUD
 # Add films from form

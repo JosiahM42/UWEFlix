@@ -36,17 +36,19 @@ class Venue(models.Model):
 
 class Screen(models.Model):
     screen_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
+    screen_Num = models.IntegerField()
     capacity = models.IntegerField()
     is_full = models.BooleanField()
     venue_id = models.ForeignKey(Venue, on_delete=models.CASCADE)
+    
     #seat_id = models.ForeignKey(Seat, on_delete=models.CASCADE)
 
 class Seat(models.Model):
+    seat_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     screen_id = models.ForeignKey(Screen, on_delete=models.CASCADE)
     seat_number = models.IntegerField()
-    seat_type = models.CharField(max_length=50)
 
-
+    
 class Showing(models.Model):
     showing_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     showing_datetime = models.DateTimeField("date logged")
