@@ -7,12 +7,15 @@ Login
 
 <form method="POST" action="">
     {% csrf_token %}
-    <!-- {{form.as_p}} -->
     <input type="text" name="username" placeholder="Enter your username...">
     <input type="text" name="password" placeholder="Enter your password...">
     <input type="submit" name="Register User">
     <!-- <button type="submit">Sign Up</button> -->
 </form>
+
+{% for errorMessage in messages %}
+    <p>{{errorMessage}}</p>
+{% endfor %}
 
 <a href="{% url 'cinemaAdmin' %}" class="navbar-item">Cinema Admin</a>
 
