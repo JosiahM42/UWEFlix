@@ -2,6 +2,9 @@ from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import AbstractUser
 
+# Used if email were to be used as a user's unique identifier
+# from django.utils.translation import ugettext_lazy as _
+
 from django.conf import settings
 
 
@@ -58,16 +61,18 @@ class Ticket(models.Model):
 
 class Account(AbstractUser):
 
-    # email = models.EmailField(max_length=254, unique=True)
-
-    # is_cinema_admin = models.BooleanField(default=False)
-    # is_cinema_accounts = models.BooleanField(default=False)
-    # is_club = models.BooleanField(default=False)
-    # is_active = models.BooleanField(default=True)
+    # if username was removed and email was used as the unique identifier
+    # username = None
+    # email = models.EmailField(_('email address'), unique=True)
 
     # USERNAME_FIELD = 'email'
-    # REQUIRED_FIELD = ['username'
-    pass
+    # REQUIRED_FIELDS = []
+
+    is_cinema_admin = models.BooleanField(default=False)
+    is_cinema_accounts = models.BooleanField(default=False)
+    is_club = models.BooleanField(default=False)
+    # is_active = models.BooleanField(default=True)
+    # pass
     
 
 class CinemaAdmin(models.Model):
