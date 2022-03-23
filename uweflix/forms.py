@@ -1,9 +1,9 @@
 from email import message
 from django import forms
 from uweflix.models import Film, Venue, Account
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from django.forms import  TextInput, Textarea
+from django.forms import  TextInput, Textarea, PasswordInput
 
 class signUpForm(UserCreationForm): 
         #email = forms.EmailField(required=True)
@@ -17,7 +17,13 @@ class signUpForm(UserCreationForm):
                 # fields = ('email', 'password1', 'password2', 'is_club')
 
 
-        
+# class loginForm(AuthenticationForm):
+#         username = forms.CharField(widget=forms.TextInput())
+#         password = forms.CharField(widget=forms.PasswordInput())
+
+#         class Meta:
+#                 model = Account
+
 
 
 class addFilmForm(forms.ModelForm):
