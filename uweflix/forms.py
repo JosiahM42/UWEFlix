@@ -17,7 +17,8 @@ class signUpForm(UserCreationForm):
                 # fields = ('email', 'password1', 'password2', 'is_club')
 
 
-        
+
+
 
 
 class addFilmForm(forms.ModelForm):

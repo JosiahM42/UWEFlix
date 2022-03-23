@@ -9,7 +9,7 @@ from uweflix.models import *
 
 from django.shortcuts import redirect
 
-#  from django.contrib import messages
+from django.contrib import messages
 
 from django.contrib.auth.forms import UserCreationForm
 
@@ -25,13 +25,27 @@ def loginRequest(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        attemptedUser =  authenticate(request, username=username, password=password)
+        attemptedUser = authenticate(request, username=username, password=password)
 
         if attemptedUser is not None:
             login(request, attemptedUser)
-            return redirect('studentAccount')
+
+            if attemptedUser.is_club:
+                return redirect('studentAccount')
+            elif attemptedUser.is_cinema_admin:
+                return redirect('cinemaAdmin')
+            elif attemptedUser.is_cinema_accounts:
+                return redirect('accountAdmin')
+        else:
+            messages.info(request, 'The username or password entered is incorrect, please try again')
+            return redirect('login')
         
     return render(request, "uweflix/login.html")
+
+
+def logoutRequest(request):
+    logout(request)
+    return redirect('login')
 
 def signupRequest(request):
     #form = UserCreationForm()
