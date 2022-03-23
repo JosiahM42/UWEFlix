@@ -7,7 +7,6 @@ from django.contrib.auth.models import AbstractUser
 
 from django.conf import settings
 
-
 import uuid
 
 
@@ -34,14 +33,17 @@ class Venue(models.Model):
     postcode = models.CharField(max_length=8)
     city = models.CharField(max_length=20)
 
+    def __str__(self):
+	    return self.name
+
+
 class Screen(models.Model):
     screen_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
-    screen_Num = models.IntegerField()
-    capacity = models.IntegerField()
-    is_full = models.BooleanField()
     venue_id = models.ForeignKey(Venue, on_delete=models.CASCADE)
+    screen_num = models.IntegerField(max_length=2)
+    capacity = models.IntegerField(max_length=3)
+    #is_full = models.BooleanField()
     
-    #seat_id = models.ForeignKey(Seat, on_delete=models.CASCADE)
 
 class Seat(models.Model):
     seat_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)

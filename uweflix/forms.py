@@ -75,19 +75,25 @@ class addVenueForm(forms.ModelForm):
 
 
 
-# class addScreenForm(forms.ModelForm):
-#         class Meta:
-#                 model = Screen
-#                 fields = "capacity,"
+class addScreenForm(forms.ModelForm):
+        class Meta:
+                model = Screen
+                fields = ("venue_id", "screen_num", "capacity",)
                 
-#                 #Styles Form boxes
-#                 widgets = {
-#                 'name': TextInput(attrs={
-#                 'class': "addScreenForm",
-#                 'style': 'max-width: 300px;',
-#                 'placeholder': 'Screens capacity'
-#                 })
-#         }
+                #Styles Form boxes
+                widgets = {
+                'screen_num': TextInput(attrs={
+                'class': "addScreenForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'eg 1'
+                }),
+                'capacity': TextInput(attrs={
+                'class': "addVenueForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Eg 120'
+                })
+                
+        }
 
 
 
