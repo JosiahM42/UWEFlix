@@ -7,24 +7,17 @@ Login
 
 <form method="POST" action="">
     {% csrf_token %}
-    <input type="text" name="username" placeholder="Enter your username...">
-    <input type="password" name="password" placeholder="Enter your password..." id="password">
 
-    <!-- <input type="checkbox" onclick="togglePassword()">Show Password -->
+    <!-- This is for the First loginRequest -->
+    <input type="text" name="username" placeholder="Enter your username...">
+    <input type="password" name="password" placeholder="Enter your password..." >
+
+    <!-- This is for the Second LoginRequest -->
+    <!-- {{form.as_p}} -->
+
     <input type="submit" name="loginUser">
     <!-- <button type="submit">Sign Up</button> -->
 </form>
-
-<!-- <script>
-    function togglePassword() {
-        var password = document.getElementById("password");
-        if (password.type === "password") {
-            password.type = "text";
-        } else {
-            password.type = "password";
-        }
-    }
-</script> -->
 
 
 {% for errorMessage in messages %}

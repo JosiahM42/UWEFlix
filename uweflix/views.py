@@ -11,7 +11,7 @@ from django.shortcuts import redirect
 
 from django.contrib import messages
 
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.contrib.auth import authenticate, login, logout
 
@@ -41,6 +41,35 @@ def loginRequest(request):
             return redirect('login')
         
     return render(request, "uweflix/login.html")
+
+
+# def loginRequest(request):
+#     form = AuthenticationForm()
+#     context = {'form': form}
+
+#     if request.method == 'POST':
+#         form = AuthenticationForm(request=request, data=request.POST)
+#         if form.is_valid():
+#             username = form.cleaned_data.get('username')
+#             password = form.cleaned_data.get('password')
+
+#             attemptedUser = authenticate(username=username, password=password)
+
+#             if attemptedUser is not None:
+#                 login(request, attemptedUser)
+#                 messages.info(request, 'Login Sucessful')
+
+#                 if attemptedUser.is_club:
+#                     return redirect('studentAccount')
+#                 elif attemptedUser.is_cinema_admin:
+#                     return redirect('cinemaAdmin')
+#                 elif attemptedUser.is_cinema_accounts:
+#                     return redirect('accountAdmin')
+#             else:
+#                 messages.info(request, 'The username or password entered is incorrect, please try again')
+#                 return redirect('login')
+        
+#     return render(request, "uweflix/login.html", context)
 
 
 def logoutRequest(request):
