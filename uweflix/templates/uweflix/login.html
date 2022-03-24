@@ -9,10 +9,11 @@ Login
     {% csrf_token %}
     <!-- {{form.as_p}} -->
     <table class="addingForms">
-        <label>Username :</label>
+        <label>Username : </label>
         <input type="text" name="username" placeholder="Enter your username...">
         <br>
-        <input type="text" name="password" placeholder="Enter your password...">
+        <label>Password :   </label>
+        <input type="password" name="password" placeholder="Enter your password...">
         <br>
         <input type="submit" name="Register User">
     </table>

@@ -1,7 +1,6 @@
 # Admin
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from rsa import sign
 from .models import *
 from .forms import signUpForm
 
