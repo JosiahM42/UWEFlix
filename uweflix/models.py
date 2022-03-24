@@ -42,7 +42,7 @@ class Screen(models.Model):
     venue_id = models.ForeignKey(Venue, on_delete=models.CASCADE)
     screen_num = models.IntegerField(max_length=2)
     capacity = models.IntegerField(max_length=3)
-    #is_full = models.BooleanField()
+    is_full = models.BooleanField(default=False)
     
 
 class Seat(models.Model):
