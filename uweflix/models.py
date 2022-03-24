@@ -74,7 +74,7 @@ class Account(AbstractUser):
 
     is_cinema_admin = models.BooleanField(default=False)
     is_cinema_accounts = models.BooleanField(default=False)
-    is_club = models.BooleanField(default=False)
+    is_club = models.BooleanField(default=True)
     # is_active = models.BooleanField(default=True)
     # pass
     
