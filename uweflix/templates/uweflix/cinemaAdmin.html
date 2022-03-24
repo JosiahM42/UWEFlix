@@ -3,6 +3,7 @@
 Home
 {% endblock %}
 {% block content %}
+    <h1>Hello, {{request.user}} </h1>
     <p>Welcome the cinema admin page for the UWEFlix cinema booking system.</p>
 
     <h2>Films</h2>
@@ -31,8 +32,9 @@ Home
 
     <a class="cinemaAdminButtons" href="{% url 'allFilms' %}" class="navbar-item">View All Current Screenings</a>
 
-
-    <p>hello, {{request.user}} </p>
+    <br>
+    <br>
+    
     <a href="{% url 'logout' %}">Logout</a>
 
 {% endblock %}

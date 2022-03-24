@@ -1,11 +1,17 @@
 {% extends "uweflix/layout.html" %}
 {% block title %}
-Home
+<title>Admin Account</title>
 {% endblock %}
+
 {% block content %}
-<p>Welcome the account admin page for the UWEFlix cinema booking system.</p>
-
-<p>hello, {{request.user}} </p>
+<div class="container">
+    <h2>Welcome the account admin page for the UWEFlix cinema booking system.</h2>
+    <h3>Profile : <br> Welcome, {{request.user}} </h3>
+    <p>Username: {{ user }}</p>
+    <p>First name: {{ user.first_name }}</p>
+    <p>Last name: {{ user.last_name }}</p>
+    <p>Email: {{ user.email }}</p>
+</div>
 <a href="{% url 'logout' %}">Logout</a>
-
 {% endblock %}
+logout/ [name='logout']
