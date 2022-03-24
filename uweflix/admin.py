@@ -26,11 +26,11 @@ class UserAdministrator(UserAdmin):
 # Registering user model
 admin.site.register(Account, UserAdministrator)
 
-#admin.site.register(CinemaAdmin)
+admin.site.register(CinemaAdmin)
 
-# admin.site.register(AccountAdmin)
+admin.site.register(AccountAdmin)
 
-# admin.site.register(Club)
+admin.site.register(Club)
 
 
 
