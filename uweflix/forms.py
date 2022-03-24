@@ -2,11 +2,11 @@ from email import message
 #from turtle import Screen
 from django import forms
 from uweflix.models import Film, Venue, Account, Screen
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from django.forms import  TextInput, Textarea
+from django.forms import  TextInput, Textarea, PasswordInput
 
-class signUpForm(UserCreationForm): 
+class signUpForm(UserCreationForm):
         #email = forms.EmailField(required=True)
 
         class Meta:
@@ -18,7 +18,13 @@ class signUpForm(UserCreationForm):
                 # fields = ('email', 'password1', 'password2', 'is_club')
 
 
-        
+# class loginForm(AuthenticationForm):
+#         username = forms.CharField(widget=forms.TextInput())
+#         password = forms.CharField(widget=forms.PasswordInput())
+
+#         class Meta:
+#                 model = Account
+
 
 
 class addFilmForm(forms.ModelForm):
@@ -48,7 +54,7 @@ class addVenueForm(forms.ModelForm):
         class Meta:
                 model = Venue
                 fields = ("name","street_address", "postcode", "city",) #
-                
+
                 #Styles Form boxes
                 widgets = {
                 'name': TextInput(attrs={
@@ -79,7 +85,7 @@ class addScreenForm(forms.ModelForm):
         class Meta:
                 model = Screen
                 fields = ("venue_id", "screen_num", "capacity",)
-                
+
                 #Styles Form boxes
                 widgets = {
                 'screen_num': TextInput(attrs={
@@ -92,7 +98,7 @@ class addScreenForm(forms.ModelForm):
                 'style': 'max-width: 300px;',
                 'placeholder': 'Eg 120'
                 })
-                
+
         }
 
 
@@ -121,8 +127,3 @@ class loginForm(forms.Form):
 class signUpFormForm(forms.Form):
         userName = forms.CharField()
         password = forms.PasswordInput()
-
-
-
-
-

@@ -19,6 +19,11 @@ Login
     <!-- <button type="submit">Sign Up</button> -->
 </form>
 
+
+{% for errorMessage in messages %}
+    <p>{{errorMessage}}</p>
+{% endfor %}
+
 <a href="{% url 'cinemaAdmin' %}" class="navbar-item">Cinema Admin</a>
 
 <a href="{% url 'accountAdmin' %}" class="navbar-item">Account Admin</a>
