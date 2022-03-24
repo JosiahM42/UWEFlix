@@ -94,9 +94,9 @@ class Club(models.Model):
     postcode = models.CharField(max_length=7)
     city = models.CharField(max_length=20)
     phone = models.IntegerField()
-    landline = models.IntegerField()
+    landline = models.IntegerField(null=True, blank=True)
     account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
 
 class Booking(models.Model):
     # booking_id = models.AutoField(primary_key=True)
