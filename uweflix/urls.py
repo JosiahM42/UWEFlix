@@ -18,6 +18,12 @@ urlpatterns = [
     path("deleteVenues/<venue_id>", views.deleteVenue, name="deleteVenues"),
     path("amendVenues/<venue_id>", views.amendVenue, name="amendVenues"),
 
+    #Screens
+    path("addScreen/", views.addScreen, name="addScreen"),
+    path("allScreen/", views.getAllScreens, name="allScreen"),
+    path("deleteScreen/<screen_id>", views.deleteScreen, name="deleteScreen"),
+    path("amendScreen/<screen_id>", views.amendScreen, name="amendScreen"),
+
 
 
     path("", views.home, name="home"),
@@ -33,6 +39,8 @@ urlpatterns = [
     path("allFilms/", views.allFilms, name="allFilms"),
     path("addVenues/", views.addVenues, name="addVenues"),
     path("allVenues/", views.allVenues, name="allVenues"),
+    # path("addScreen/", views.addScreen, name="addScreen"),
+    # path("allScreen/", views.allScreen, name="allScreen"),
 
 
 

@@ -9,17 +9,19 @@ Create an Account
     <form method="POST" action="">
         {% csrf_token %}
         <!-- {{form.as_p}} -->
-        {{form.username.label}}
-        {{form.username}}
-
-        {{form.email.label}}
-        {{form.email}}
-
-        {{form.password1.label}}
-        {{form.password1}}
-
-        {{form.password2.label}}
-        {{form.password2}}
+        <table class="addFilmsForm">
+            {{form.username.label}}
+            {{form.username}}
+            <br>
+            {{form.email.label}}
+            {{form.email}}
+            <br>
+            {{form.password1.label}}
+            {{form.password1}}
+            <br>
+            {{form.password2.label}}
+            {{form.password2}}
+        </table>
         <input type="submit" name="Register User">
         <!-- <button type="submit">Sign Up</button> -->
     </form>

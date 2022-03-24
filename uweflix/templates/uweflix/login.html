@@ -7,15 +7,15 @@ Login
 
 <form method="POST" action="">
     {% csrf_token %}
-
-    <!-- This is for the First loginRequest -->
-    <input type="text" name="username" placeholder="Enter your username...">
-    <input type="password" name="password" placeholder="Enter your password..." >
-
-    <!-- This is for the Second LoginRequest -->
     <!-- {{form.as_p}} -->
-
-    <input type="submit" name="loginUser">
+    <table class="addingForms">
+        <label>Username :</label>
+        <input type="text" name="username" placeholder="Enter your username...">
+        <br>
+        <input type="text" name="password" placeholder="Enter your password...">
+        <br>
+        <input type="submit" name="Register User">
+    </table>
     <!-- <button type="submit">Sign Up</button> -->
 </form>
 
@@ -29,4 +29,5 @@ Login
 <a href="{% url 'accountAdmin' %}" class="navbar-item">Account Admin</a>
 
 <a href="{% url 'studentAccount' %}" class="navbar-item">Account Student</a>
+
 {% endblock %}

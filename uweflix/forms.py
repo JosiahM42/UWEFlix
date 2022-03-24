@@ -1,11 +1,12 @@
 from email import message
+#from turtle import Screen
 from django import forms
-from uweflix.models import Film, Venue, Account
+from uweflix.models import Film, Venue, Account, Screen
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.forms import  TextInput, Textarea, PasswordInput
 
-class signUpForm(UserCreationForm): 
+class signUpForm(UserCreationForm):
         #email = forms.EmailField(required=True)
 
         class Meta:
@@ -53,7 +54,7 @@ class addVenueForm(forms.ModelForm):
         class Meta:
                 model = Venue
                 fields = ("name","street_address", "postcode", "city",) #
-                
+
                 #Styles Form boxes
                 widgets = {
                 'name': TextInput(attrs={
@@ -65,6 +66,7 @@ class addVenueForm(forms.ModelForm):
                 'class': "addVenueForm",
                 'style': 'max-width: 300px;',
                 'placeholder': 'Full address'
+
                 }),'postcode': TextInput(attrs={
                 'class': "addVenueForm",
                 'style': 'max-width: 300px;',
@@ -76,6 +78,32 @@ class addVenueForm(forms.ModelForm):
                 'placeholder': 'Eg Bristol'
                 })
         }
+
+
+
+class addScreenForm(forms.ModelForm):
+        class Meta:
+                model = Screen
+                fields = ("venue_id", "screen_num", "capacity",)
+
+                #Styles Form boxes
+                widgets = {
+                'screen_num': TextInput(attrs={
+                'class': "addScreenForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'eg 1'
+                }),
+                'capacity': TextInput(attrs={
+                'class': "addVenueForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Eg 120'
+                })
+
+        }
+
+
+
+
 
 
 
@@ -99,8 +127,3 @@ class loginForm(forms.Form):
 class signUpFormForm(forms.Form):
         userName = forms.CharField()
         password = forms.PasswordInput()
-
-
-
-
-

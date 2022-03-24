@@ -1,0 +1,44 @@
+{% extends "uweflix/layout.html" %}
+{% block title %}
+All Screens
+{% endblock %}
+{% block content %}
+
+    <p>Welcome to the screens page for the UWEFlix cinema booking system. Amend and delete screens as you see fit.</p>
+
+    <h2>Screens List</h2>
+
+{% for screen in screenList %}
+
+    <div class="card">
+        <div class="card-header">
+        <strong>Location: {{ screen.venue_id }}</strong> 
+        </div>
+        <div class="card-body">
+        <p class="card-text">
+
+            Screen Number:  {{ screen.screen_num }}
+            <br>
+            Capacity:  {{ screen.capacity }}
+            <br>
+        
+
+        </p>
+
+        </div>
+
+        <div class="card-footer text-muted">
+
+            <a class="amendButtons" href="{% url 'amendScreen' screen.screen_id %}">Amend</a>
+
+            <a class="deleteButtons" href="{% url 'deleteScreen' screen.screen_id %}">Delete Film</a>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    {% endfor %}
+
+{% endblock %}
