@@ -86,6 +86,7 @@ def signupRequest(request):
         # form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+            return redirect("home")
             # messageUser = form.cleaned_data.get('username')
             # messages.success(request, 'New user account has been created')
 
