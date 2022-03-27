@@ -120,10 +120,10 @@ class addScreenForm(forms.ModelForm):
 
 
 
-class loginForm(forms.Form):
-        userName = forms.CharField(max_length=12)
-        password = forms.PasswordInput()
+# class loginForm(forms.Form):
+#         userName = forms.CharField(max_length=12)
+#         password = forms.PasswordInput()
 
-class signUpFormForm(forms.Form):
-        userName = forms.CharField()
-        password = forms.PasswordInput()
+# class signUpFormForm(forms.Form):
+#         userName = forms.CharField()
+#         password = forms.PasswordInput()
