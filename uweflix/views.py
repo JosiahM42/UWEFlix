@@ -86,9 +86,19 @@ def signupRequest(request):
         # form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
+
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password1')
+
+            newUser = authenticate(request, username=username, password=password)
+
+            login(request, newUser)
+            messages.success(request, 'New user account has been created {username}')
             return redirect("home")
-            # messageUser = form.cleaned_data.get('username')
-            # messages.success(request, 'New user account has been created')
+        else:
+            messages.success(request, 'Password is too short, please enter an 8 mixed character password ')
+            
+            
 
     return render(request, "uweflix/signup.html", context)
 
