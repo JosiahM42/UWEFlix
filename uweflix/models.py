@@ -26,6 +26,9 @@ class Film(models.Model):
     age_rating =  models.CharField(max_length=3, choices=Age_rating_UK)
     duration = models.DurationField(max_length=8)
 
+    def __str__(self):
+	    return self.title
+
 class Venue(models.Model):
     venue_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     name =  models.CharField(max_length=25)
@@ -43,6 +46,9 @@ class Screen(models.Model):
     screen_num = models.IntegerField(max_length=2)
     capacity = models.IntegerField(max_length=3)
     is_full = models.BooleanField(default=False)
+
+    def __str__(self):
+	    return str(self.screen_num)
     
 
 class Seat(models.Model):
@@ -53,8 +59,10 @@ class Seat(models.Model):
     
 class Showing(models.Model):
     showing_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
-    showing_datetime = models.DateTimeField("date logged")
+    showing_time= models.TimeField()
+    showing_date = models.DateField()
     film_id = models.ForeignKey(Film, on_delete=models.CASCADE)
+    venue_id = models.ForeignKey(Venue, on_delete=models.CASCADE)
     screen_id = models.ForeignKey(Screen, on_delete=models.CASCADE)
 
 class Ticket(models.Model):

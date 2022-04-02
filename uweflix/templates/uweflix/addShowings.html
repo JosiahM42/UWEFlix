@@ -1,0 +1,20 @@
+{% extends "uweflix/layout.html" %}
+{% block title %}
+Add a new venue
+{% endblock %}
+{% block content %}
+
+<p>Welcome to the Add showings page for the UWEFlix cinema booking system. Please add a new showing of a film</p>
+
+    
+    <form method="POST" class="addShowing">
+    {% csrf_token %}
+    <table class="addingForms">
+     {{ form }} 
+    </table>
+    <input type="submit" value="Add Showing">
+    </form>
+
+    <br>
+
+{% endblock %}

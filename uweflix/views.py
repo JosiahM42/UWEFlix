@@ -266,7 +266,50 @@ def amendScreen(request, screen_id):
     else:
         return render(request, "uweflix/amendScreen.html", {"Venue": screen, "form": form})
 
+# ===== Showing Details CRUD =====
+# Add screen from form
 
+def addShowing(request):
+
+    form = addShowingForm(request.POST or None)
+
+    if request.method == "POST":
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.save()
+            return redirect("cinemaAdmin")
+    else:
+        return render(request, "uweflix/addShowings.html", {"form": form})
+
+
+# deletes screen on request
+def deleteShowing(request, showing_id):
+
+    showing = Showing.objects.get(pk=showing_id)
+    showing.delete()
+
+    return redirect("allShowings")
+
+# Gets all screens in the system to be displayed
+def getAllShowing(request):
+
+    showingList = Screen.objects.all()
+
+    return render(request, 'uweflix/allShowing.html', {'showingList': showingList})
+
+# amend a screens details
+def amendShowing(request, showing_id):
+
+    showing = Showing.objects.get(pk=showing_id)
+
+    form = addShowingForm(request.POST or None, instance=showing)
+
+    if form.is_valid():
+        form.save()
+        return redirect("allShowing")
+    
+    else:
+        return render(request, "uweflix/amendShowing.html", {"Showing": showing, "form": form})
 
 
 

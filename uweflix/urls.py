@@ -24,6 +24,12 @@ urlpatterns = [
     path("deleteScreen/<screen_id>", views.deleteScreen, name="deleteScreen"),
     path("amendScreen/<screen_id>", views.amendScreen, name="amendScreen"),
 
+    #Showing
+    path("addShowings/", views.addShowing, name="addShowing"),
+    path("allShowing/", views.getAllShowing, name="allShowing"),
+    path("deleteShowing/<showing_id>", views.deleteShowing, name="deleteShowing"),
+    path("amendShowing/<showing_id>", views.amendShowing, name="amendShowing"), 
+
 
 
     path("", views.home, name="home"),

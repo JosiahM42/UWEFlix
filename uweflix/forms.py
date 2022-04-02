@@ -1,10 +1,11 @@
 from email import message
 #from turtle import Screen
 from django import forms
-from uweflix.models import Film, Venue, Account, Screen
+from uweflix.models import Film, Venue, Account, Screen, Showing
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from django.forms import  TextInput, Textarea, PasswordInput
+from django.forms import  TextInput, Textarea, DateTimeInput
+
 
 class signUpForm(UserCreationForm):
         #email = forms.EmailField(required=True)
@@ -102,6 +103,15 @@ class addScreenForm(forms.ModelForm):
         }
 
 
+
+class addShowingForm(forms.ModelForm):
+        class Meta:
+                model = Showing
+                fields = ("showing_time","showing_date","film_id", "venue_id" , "screen_id",)
+                #Styles Form boxes
+              
+
+       
 
 
 
