@@ -30,6 +30,8 @@ urlpatterns = [
     path("login/", views.loginRequest, name="login"),
     path("logout/", views.logoutRequest, name="logout"),
     path("signup/", views.signupRequest, name="signup"),
+    path("guestlogin/", views.guestLoginRequest, name="guest"),
+
     path("tickets/", views.tickets, name="tickets"),
     path("checkout/", views.checkout, name="checkout"),
     path("cinemaAdmin/", views.cinemaAdmin, name="cinemaAdmin"),

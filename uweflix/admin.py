@@ -17,6 +17,7 @@ class UserAdministrator(UserAdmin):
                     'is_cinema_admin',
                     'is_cinema_accounts',
                     'is_club',
+                    'is_customer',
                 )
             }
         )
@@ -30,6 +31,8 @@ admin.site.register(CinemaAdmin)
 admin.site.register(AccountAdmin)
 
 admin.site.register(Club)
+
+admin.site.register(Customer)
 
 
 

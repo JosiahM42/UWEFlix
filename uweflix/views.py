@@ -42,6 +42,10 @@ def loginRequest(request):
         
     return render(request, "uweflix/login.html")
 
+def guestLoginRequest(request):
+    guestUser = authenticate(request, username='Guest', password='Customer')
+    login(request, guestUser)
+    return redirect('home')
 
 # def loginRequest(request):
 #     form = AuthenticationForm()
