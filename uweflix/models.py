@@ -90,6 +90,7 @@ class Customer(models.Model):
     email =  models.CharField(max_length=50)
     card_number =  models.IntegerField()
     expiry_date = models.DateField()
+    token = models.IntegerField()
 
 class Club(models.Model):
     club_name = models.CharField(max_length=50)
@@ -100,7 +101,8 @@ class Club(models.Model):
     phone = models.IntegerField()
     landline = models.IntegerField(null=True, blank=True)
     account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE, null=True, blank=True)
+    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
+    token = models.IntegerField()
 
 class Booking(models.Model):
     # booking_id = models.AutoField(primary_key=True)
@@ -121,5 +123,8 @@ class AccountAdmin(models.Model):
 
 
 class Token(models.Model):
-    quantity = models.IntegerField(default=0)
+    pound = models.IntegerField(default=0)
+    credit_card_number = models.IntegerField(max_length=16)
+    validation = models.DateField()
+    cvv = models.IntegerField(max_length=3)
     purchased_datetime =  models.DateTimeField("date logged")

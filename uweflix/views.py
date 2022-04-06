@@ -135,6 +135,8 @@ def addScreen (request):
 def allScreen (request):
     return render(request, "uweflix/allScreen.html")
 
+def tokenPayment (request):
+    return render(request, "uweflix/tokenPayment.html")
 
 #Film Details CRUD
 # Add films from form
@@ -266,6 +268,18 @@ def amendScreen(request, screen_id):
     else:
         return render(request, "uweflix/amendScreen.html", {"Venue": screen, "form": form})
 
+# Purchase Token
+def addToken(request):
+
+    form = addTokenForm(request.POST or None)
+
+    if request.method == "POST":
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.save()
+            return redirect("studentAccount")
+    else:
+        return render(request, "uweflix/tokenPayment.html", {"form": form})
 
 
 

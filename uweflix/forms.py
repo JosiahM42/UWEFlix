@@ -1,7 +1,7 @@
 from email import message
 #from turtle import Screen
 from django import forms
-from uweflix.models import Film, Venue, Account, Screen
+from uweflix.models import Film, Venue, Account, Screen, Token
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.forms import  TextInput, Textarea, PasswordInput
@@ -101,24 +101,33 @@ class addScreenForm(forms.ModelForm):
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+class addTokenForm(forms.ModelForm):
+        class Meta:
+                model = Token
+                fields = ("pound","credit_card_number","validation", "cvv") #
+                #Styles Form boxes
+                widgets = {
+                'pound': TextInput(attrs={
+                'class': "addTokenForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Amount of token to purchase'
+                }),
+                'credit_card_number': TextInput(attrs={
+                'class': "addTokenForm",
+                'style': 'max-width: 300px;',
+                'placeholder': '16-digit credit card number'
+                }),
+                'validation': TextInput(attrs={
+                'class': "addTokenForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Date valid until'
+                }),
+                'cvv': TextInput(attrs={
+                'class': "addTokenForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'Eg, 123'
+                })
+        }
 
 # class loginForm(forms.Form):
 #         userName = forms.CharField(max_length=12)
