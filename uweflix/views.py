@@ -277,7 +277,7 @@ def addShowing(request):
         if form.is_valid():
             message = form.save(commit=False)
             message.save()
-            return redirect("cinemaAdmin")
+            return render(request, "uweflix/cinemaAdmin.html")
     else:
         return render(request, "uweflix/addShowings.html", {"form": form})
 
@@ -288,12 +288,12 @@ def deleteShowing(request, showing_id):
     showing = Showing.objects.get(pk=showing_id)
     showing.delete()
 
-    return redirect("allShowings")
+    return redirect("allShowing")
 
 # Gets all screens in the system to be displayed
 def getAllShowing(request):
 
-    showingList = Screen.objects.all()
+    showingList = Showing.objects.all()
 
     return render(request, 'uweflix/allShowing.html', {'showingList': showingList})
 
@@ -312,6 +312,12 @@ def amendShowing(request, showing_id):
         return render(request, "uweflix/amendShowing.html", {"Showing": showing, "form": form})
 
 
+#
+def load_Screens(request):
+    venue_id = request.GET.get('venue_id')
+    screen_id  = Screen.objects.filter(venue_id=venue_id).order_by('screen_num')
+
+    return render(request, 'screenDropdownList.html', {'screen_id_list': screen_id})
 
 
 

@@ -59,8 +59,8 @@ class Seat(models.Model):
     
 class Showing(models.Model):
     showing_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
-    showing_time= models.TimeField()
-    showing_date = models.DateField()
+    showing_time= models.CharField(max_length=25)
+    showing_date = models.CharField(max_length=25)
     film_id = models.ForeignKey(Film, on_delete=models.CASCADE)
     venue_id = models.ForeignKey(Venue, on_delete=models.CASCADE)
     screen_id = models.ForeignKey(Screen, on_delete=models.CASCADE)
@@ -98,6 +98,7 @@ class Customer(models.Model):
     email =  models.CharField(max_length=50)
     card_number =  models.IntegerField()
     expiry_date = models.DateField()
+    token =  models.IntegerField()
 
 class Club(models.Model):
     club_name = models.CharField(max_length=50)

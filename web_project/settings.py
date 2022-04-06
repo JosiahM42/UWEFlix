@@ -123,3 +123,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 STATIC_ROOT = BASE_DIR / 'static_collected'
+
+#
+
+DATE_INPUT_FORMATS = ['%d-%m-%Y']
+
+TIME_INPUT_FORMATS = ['%H:%M']

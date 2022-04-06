@@ -12,11 +12,20 @@ All Screens
 
     <div class="card">
         <div class="card-header">
-        <strong></strong> 
+        <strong>{{showing.film_id}}</strong> 
         </div>
         <div class="card-body">
         <p class="card-text">
 
+            Location: {{showing.venue_id}}
+            <br>
+            Screen: {{showing.screen_id}}
+            <br>
+            Showing Time:  {{ showing.showing_time }}
+            <br>
+            Showing Date:  {{ showing.showing_date }}
+            <br>
+        
 
         </p>
 
@@ -30,7 +39,7 @@ All Screens
 
         </div>
 
-    </div>
+    </div> 
 
     <br>
 

@@ -25,11 +25,12 @@ urlpatterns = [
     path("amendScreen/<screen_id>", views.amendScreen, name="amendScreen"),
 
     #Showing
-    path("addShowings/", views.addShowing, name="addShowing"),
+    path("addShowing/", views.addShowing, name="addShowing"),
     path("allShowing/", views.getAllShowing, name="allShowing"),
     path("deleteShowing/<showing_id>", views.deleteShowing, name="deleteShowing"),
     path("amendShowing/<showing_id>", views.amendShowing, name="amendShowing"), 
 
+    path('ajax/load-screens/', views.load_Screens, name='ajax_screen_branches'),
 
 
     path("", views.home, name="home"),

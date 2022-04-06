@@ -5,7 +5,37 @@ Home
 {% block content %}
 <p>Home page for the UWEFlix cinema booking system.</p>
 
+{% for showing in showingList %}
 
-<a href="{% url 'tickets' %}" class="navbar-item">Tickets</a>
+<div class="card">
+    <div class="card-header">
+    <strong>{{ screen.film_id }}</strong> 
+    </div>
+    <div class="card-body">
+    <p class="card-text">
+
+        Venue:  {{ screen.venue_id }}
+        <br>
+        Screen Number:  {{ screen.screen_id }}
+        <br>
+    
+
+    </p>
+
+    </div>
+
+    <div class="card-footer text-muted">
+
+        <a class="amendButtons" href="{% url 'amendScreen' screen.screen_id %}">Select Ticket</a>
+
+    </div>
+
+</div>
+
+<br>
+
+{% endfor %}
+
+<!-- <a href="{% url 'tickets' %}" class="navbar-item">Tickets</a> -->
 
 {% endblock %}
