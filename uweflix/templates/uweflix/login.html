@@ -7,20 +7,22 @@ Login
 
 <form method="POST" action="">
     {% csrf_token %}
-    <!-- {{form.as_p}} -->
-    <table class="addingForms">
+    {{form.as_p}}
+    <!-- <table class="addingForms">
         <label>Username : </label>
         <input type="text" name="username" placeholder="Enter your username...">
         <br>
         <label>Password :   </label>
         <input type="password" name="password" placeholder="Enter your password...">
-        <br>
+        <br> -->
         <input type="submit" name="Register User">
-    </table>
+    <!-- </table>  -->
     <!-- <button type="submit">Sign Up</button> -->
 </form>
 
-<a href="{% url 'guest' %}">Guest Login</a>
+<div class="guest" >
+    <a href="{% url 'guest' %}" class="guest-login">Guest Login</a>
+</div>
  
 
 {% for errorMessage in messages %}

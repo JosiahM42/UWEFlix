@@ -24,6 +24,7 @@ class signUpForm(UserCreationForm):
 
 #         class Meta:
 #                 model = Account
+        
 
 
 

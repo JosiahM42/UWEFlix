@@ -15,65 +15,67 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.contrib.auth import authenticate, login, logout
 
+from django.contrib.auth.decorators import login_required, user_passes_test
+
 
 
 def home(request):
     return render(request, "uweflix/home.html")
 
-def loginRequest(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+# def loginRequest(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
 
-        attemptedUser = authenticate(request, username=username, password=password)
+#         attemptedUser = authenticate(request, username=username, password=password)
 
-        if attemptedUser is not None:
-            login(request, attemptedUser)
+#         if attemptedUser is not None:
+#             login(request, attemptedUser)
 
-            if attemptedUser.is_club:
-                return redirect('studentAccount')
-            elif attemptedUser.is_cinema_admin:
-                return redirect('cinemaAdmin')
-            elif attemptedUser.is_cinema_accounts:
-                return redirect('accountAdmin')
-        else:
-            messages.info(request, 'The username or password entered is incorrect, please try again')
-            return redirect('login')
+#             if attemptedUser.is_club:
+#                 return redirect('studentAccount')
+#             elif attemptedUser.is_cinema_admin:
+#                 return redirect('cinemaAdmin')
+#             elif attemptedUser.is_cinema_accounts:
+#                 return redirect('accountAdmin')
+#         else:
+#             messages.info(request, 'The username or password entered is incorrect, please try again')
+#             return redirect('login')
         
-    return render(request, "uweflix/login.html")
+#     return render(request, "uweflix/login.html")
 
 def guestLoginRequest(request):
     guestUser = authenticate(request, username='Guest', password='Customer')
     login(request, guestUser)
     return redirect('home')
 
-# def loginRequest(request):
-#     form = AuthenticationForm()
-#     context = {'form': form}
+def loginRequest(request):
+    form = AuthenticationForm()
+    context = {'form': form}
 
-#     if request.method == 'POST':
-#         form = AuthenticationForm(request=request, data=request.POST)
-#         if form.is_valid():
-#             username = form.cleaned_data.get('username')
-#             password = form.cleaned_data.get('password')
+    if request.method == 'POST':
+        form = AuthenticationForm(request=request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
 
-#             attemptedUser = authenticate(username=username, password=password)
+            attemptedUser = authenticate(username=username, password=password)
 
-#             if attemptedUser is not None:
-#                 login(request, attemptedUser)
-#                 messages.info(request, 'Login Sucessful')
+            if attemptedUser is not None:
+                login(request, attemptedUser)
+                messages.info(request, 'Login Sucessful')
 
-#                 if attemptedUser.is_club:
-#                     return redirect('studentAccount')
-#                 elif attemptedUser.is_cinema_admin:
-#                     return redirect('cinemaAdmin')
-#                 elif attemptedUser.is_cinema_accounts:
-#                     return redirect('accountAdmin')
-#             else:
-#                 messages.info(request, 'The username or password entered is incorrect, please try again')
-#                 return redirect('login')
+                if attemptedUser.is_club:
+                    return redirect('studentAccount')
+                if attemptedUser.is_cinema_admin:
+                    return redirect('cinemaAdmin')
+                elif attemptedUser.is_cinema_accounts:
+                    return redirect('accountAdmin')
+            else:
+                messages.info(request, 'The username or password entered is incorrect, please try again')
+                return redirect('login')
         
-#     return render(request, "uweflix/login.html", context)
+    return render(request, "uweflix/login.html", context)
 
 
 def logoutRequest(request):
@@ -112,12 +114,19 @@ def tickets(request):
 def checkout(request):
     return render(request, "uweflix/checkout.html")
 
+@login_required
+
+@user_passes_test(lambda user: user.groups.filter(name='CinemaAdmin').exists())
 def cinemaAdmin(request):
     return render(request, "uweflix/cinemaAdmin.html")
 
+@login_required
+@user_passes_test(lambda user: user.groups.filter(name='AccountAdmin').exists())
 def accountAdmin(request):
     return render(request, "uweflix/accountAdmin.html")
 
+@login_required
+@user_passes_test(lambda user: user.groups.filter(name='ClubRepresentative').exists())
 def studentAccount(request):
     return render(request, "uweflix/studentAccount.html")
 

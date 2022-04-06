@@ -3,7 +3,7 @@
 Create an Account
 {% endblock %}
 {% block content %}
-    <h2>Sign Up</h2>
+    <h2>Club Registration</h2>
 
 
     <form method="POST" action="">
@@ -21,6 +21,8 @@ Create an Account
             <br>
             {{form.password2.label}}
             {{form.password2}}
+            <br>
+            <p>Club Representative  {{form.is_club}}</p>
         </table>
         <input type="submit" name="Register User">
         <!-- <button type="submit">Sign Up</button> -->

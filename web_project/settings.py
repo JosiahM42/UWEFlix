@@ -25,7 +25,7 @@ SECRET_KEY = 'bl_el+x*68%hu%v#&9d3i=8=dd&z4dwu*qy8&b3*9n)8o1vxas'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['*']
 
 # Authentication
 AUTH_USER_MODEL = 'uweflix.Account'

@@ -21,7 +21,9 @@ class UserAdministrator(UserAdmin):
                 )
             }
         )
-    )
+    ) 
+
+# https://realpython.com/customize-django-admin-python/
 
 # Registering user model
 admin.site.register(Account, UserAdministrator)

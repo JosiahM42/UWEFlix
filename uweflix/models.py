@@ -84,17 +84,23 @@ class CinemaAdmin(models.Model):
     account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     is_social_distancing = models.BooleanField()
 
+    def __str__(self):
+        return f"{self.account_id}"
+
 class Token(models.Model):
     quantity = models.IntegerField(default=0)
     purchased_datetime =  models.DateTimeField("date logged")
 
 class Customer(models.Model):
-    first_name = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
-    dob = models.DateField()
-    email =  models.CharField(max_length=50)
+    customer_name = models.CharField(max_length=50)
+    # surname = models.CharField(max_length=50)
+    # dob = models.DateField()
+    # email =  models.CharField(max_length=50)
     account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
-    tokenID = models.ForeignKey(Token, on_delete=models.CASCADE, null=True, blank=True)
+    token_id = models.ForeignKey(Token, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.customer_name}"
 
 class Club(models.Model):
     club_name = models.CharField(max_length=50)
@@ -105,6 +111,9 @@ class Club(models.Model):
     phone = models.IntegerField()
     landline = models.IntegerField(null=True, blank=True)
     account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.club_name}"
 
 class Booking(models.Model):
     # booking_id = models.AutoField(primary_key=True)
@@ -122,4 +131,7 @@ class Statements(models.Model):
 class AccountAdmin(models.Model):
     account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     club_discount = models.BooleanField(False)
+
+    def __str__(self):
+        return f"{self.account_id}"
 

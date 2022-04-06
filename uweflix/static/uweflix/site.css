@@ -34,6 +34,7 @@
     color: red
 }
 
+
 .navbar .navbar-item:hover {
     background-color: #2F3238;
     color: white;
@@ -133,3 +134,12 @@
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
 } */
+
+.guest-login{
+    font-variant: small-caps;
+    margin-left: 300px;
+    margin-right: 300px;
+    font-size: 1.8em;
+    background-color: #2F3238;
+    color: white;
+}
