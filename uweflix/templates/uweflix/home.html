@@ -3,31 +3,35 @@
 Home
 {% endblock %}
 {% block content %}
-<p>Home page for the UWEFlix cinema booking system.</p>
+<p>Home page for the UWEFlix cinema booking system. Please Select a showing you would like to view.</p>
 
 {% for showing in showingList %}
 
 <div class="card">
     <div class="card-header">
-    <strong>{{ screen.film_id }}</strong> 
-    </div>
+    <strong>Film Title: {{ showing.film_id }}</strong> 
+    </div> 
     <div class="card-body">
     <p class="card-text">
 
-        Venue:  {{ screen.venue_id }}
+        Location: {{showing.venue_id}}
         <br>
-        Screen Number:  {{ screen.screen_id }}
+        Screen: {{showing.screen_id}}
+        <br>
+        Showing Time:  {{ showing.showing_time }}
+        <br>
+        Showing Date:  {{ showing.showing_date }}
         <br>
     
 
     </p>
 
     </div>
-
+        
     <div class="card-footer text-muted">
 
-        <a class="amendButtons" href="{% url 'amendScreen' screen.screen_id %}">Select Ticket</a>
-
+        <a class="amendButtons" href="{% url 'tickets' showing.showing_id %}">Book Ticket</a>
+       
     </div>
 
 </div>

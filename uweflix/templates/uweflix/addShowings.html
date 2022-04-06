@@ -7,7 +7,7 @@ Add a new venue
 <p>Welcome to the Add showings page for the UWEFlix cinema booking system. Please add a new showing of a film</p>
 
     
-    <form method="POST" id="showingsForm" class="addShowing" data-screens-url="{% url 'ajax_screen_branches' %}">
+    <form method="POST" id="showingsForm" class="addShowing" data-screens-url="{% url 'ajax_screen_branches' %}" novalidate>
     {% csrf_token %}
     <table class="addingForms">
      {{ form }} 
@@ -18,7 +18,7 @@ Add a new venue
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
     <script>
-        $("#id_Venue").change(function () {
+        $("#id_venue").change(function () {
           var url = $("#showingsForm").attr("data-screens-url");  // get the url of the `load_cities` view
           var venue_id = $(this).val();  // get the selected country ID from the HTML input
     

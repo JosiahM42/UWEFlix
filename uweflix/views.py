@@ -18,7 +18,10 @@ from django.contrib.auth import authenticate, login, logout
 
 
 def home(request):
-    return render(request, "uweflix/home.html")
+
+    showingList = Showing.objects.all()
+
+    return render(request, "uweflix/home.html", {'showingList': showingList})
 
 def loginRequest(request):
     if request.method == 'POST':
@@ -312,12 +315,13 @@ def amendShowing(request, showing_id):
         return render(request, "uweflix/amendShowing.html", {"Showing": showing, "form": form})
 
 
-#
+# AJAX Code
+
 def load_Screens(request):
     venue_id = request.GET.get('venue_id')
-    screen_id  = Screen.objects.filter(venue_id=venue_id).order_by('screen_num')
+    screen_id  = Screen.objects.filter(venue_id=venue_id).all()
 
-    return render(request, 'screenDropdownList.html', {'screen_id_list': screen_id})
+    return render(request, 'uweflix/screenDropdownList.html', {'screen_id_list': screen_id})
 
 
 

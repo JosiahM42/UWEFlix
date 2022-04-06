@@ -33,6 +33,9 @@ urlpatterns = [
     path('ajax/load-screens/', views.load_Screens, name='ajax_screen_branches'),
 
 
+    #Ticket system 
+    path("tickets/<showing_id>", views.tickets, name="tickets"),
+
     path("", views.home, name="home"),
     path("login/", views.loginRequest, name="login"),
     path("logout/", views.logoutRequest, name="logout"),

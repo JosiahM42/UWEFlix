@@ -108,6 +108,7 @@ class addShowingForm(forms.ModelForm):
         class Meta:
                 model = Showing
                 fields = ("showing_time","showing_date","film_id", "venue_id" , "screen_id",)
+                
                 #Styles Form boxes
 
         # Code to get the relevent screen IDs for the selected venue ID and display it in the dropdown menu so be selected from (not working)
@@ -118,31 +119,17 @@ class addShowingForm(forms.ModelForm):
         #         super().__init__(*args, **kwargs)
         #         self.fields['screen_id'].queryset = Screen.objects.none()
 
-                # if 'venue_id' in self.data:
-                #         try:
-                #                 venue_id = int(self.data.get('venue_id'))
-                #                 self.fields['screen_id'].queryset = Screen.objects.filter(venue_id_id=venue_id)
-                #         except (ValueError, TypeError):
-                #                pass  # invalid input from the client; ignore and fallback to empty screen queryset
+        #         # if 'venue_id' in self.data:
+        #         #         try:
+        #         #                 venue_id = int(self.data.get('venue_id'))
+        #         #                 self.fields['screen_id'].queryset = Screen.objects.filter(venue_id_id=venue_id)
+        #         #         except (ValueError, TypeError):
+        #         #                pass  # invalid input from the client; ignore and fallback to empty screen queryset
                         
-                # elif self.instance.pk:
-                #         self.fields['screen_id'].queryset = Screen.objects.filter(venue_id=self.instance.venue_id_id)     
+        #         # elif self.instance.pk:
+        #         #         self.fields['screen_id'].queryset = Screen.objects.filter(venue_id=self.instance.venue_id_id)     
 
        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
