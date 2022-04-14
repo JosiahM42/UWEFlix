@@ -29,8 +29,12 @@ urlpatterns = [
 
 
     path('ajax/load-cities/', views.load_Screens, name='ajax_load_cities'),
-    path('allShowing/', views.showingListView.as_view(), name='allShowing'),
+    path('allShowing/', views.getAllShowing, name="allShowing"),
     path('addShowing/', views.showingCreateView.as_view(), name='addShowing'),
+
+    
+    path("amendShowing/<showing_id>", views.amendShowing, name="amendShowing"),
+    path("deleteShowing/<showing_id>", views.deleteShowing, name="deleteShowing"), 
     
     
     #path('<int:pk>/', views.showingUpdateView.as_view(), name='showingsChange'),
@@ -46,8 +50,8 @@ urlpatterns = [
 
     # path("addShowing/", views.addShowing, name="addShowing"),
     # path("allShowing/", views.getAllShowing, name="allShowing"),
-    # path("deleteShowing/<showing_id>", views.deleteShowing, name="deleteShowing"),
-    # path("amendShowing/<showing_id>", views.amendShowing, name="amendShowing"), 
+    
+    
 
     # path('ajax/load-screens/', views.load_Screens, name='ajax_screen_branches'),
 

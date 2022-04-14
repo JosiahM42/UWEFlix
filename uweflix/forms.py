@@ -132,8 +132,8 @@ class addShowingForm(forms.ModelForm):
                                 pass  # invalid input from the client; ignore and fallback to empty screen queryset
                  
                         
-                # elif self.instance.pk:
-                #         self.fields['screen_id'].queryset = Screen.objects.filter(venue_id=self.instance.venue_id)     
+                elif self.instance.pk:
+                         self.fields['screen_id'].queryset = Screen.objects.filter(venue_id=self.instance.venue_id)     
 
                 # if 'country' in self.data:
                 #         try:
