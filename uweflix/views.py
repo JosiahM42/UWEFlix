@@ -16,9 +16,13 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth import authenticate, login, logout
 
 
+from django.views.generic import *
+
+from django.urls import *
+
+
 
 def home(request):
-
     showingList = Showing.objects.all()
 
     return render(request, "uweflix/home.html", {'showingList': showingList})
@@ -105,7 +109,8 @@ def signupRequest(request):
 
     return render(request, "uweflix/signup.html", context)
 
-def tickets(request):
+def tickets(request, id):
+
     return render(request, "uweflix/tickets.html")
 
 def checkout(request):
@@ -315,15 +320,45 @@ def amendShowing(request, showing_id):
         return render(request, "uweflix/amendShowing.html", {"Showing": showing, "form": form})
 
 
-# AJAX Code
 
+
+# Drop down box for showings form
+
+class showingListView(ListView):
+    model = Showing
+    template_name = 'uweflix/addShowings.html'
+    context_object_name = 'showingList'
+ 
+class showingCreateView(CreateView):
+    model = Showing
+    form_class = addShowingForm
+    success_url = reverse_lazy('cinemaAdmin')
+
+
+class showingUpdateView(UpdateView):
+    model = Showing
+    form_class = addShowingForm
+    success_url = reverse_lazy('cinemaAdmin')
+
+
+# AJAX Code for showing form
+# Bug (seems to bever run)
 def load_Screens(request):
+
+    print("Hello?")
     venue_id = request.GET.get('venue_id')
+    print(venue_id)
     screen_id  = Screen.objects.filter(venue_id=venue_id).all()
 
     return render(request, 'uweflix/screenDropdownList.html', {'screen_id_list': screen_id})
 
+# def load_cities(request):
 
+#     print("Testing")
+#     venue_id = request.GET.get('venue_id')
+#     print(venue_id)
+#     screen_id  = Screen.objects.filter(venue_id=venue_id).all()
+#     return render(request, 'uweflix/city_dropdown_list_options.html', {'cities': screen_id})
 
 
 # User Account Views

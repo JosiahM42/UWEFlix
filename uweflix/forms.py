@@ -114,22 +114,36 @@ class addShowingForm(forms.ModelForm):
         # Code to get the relevent screen IDs for the selected venue ID and display it in the dropdown menu so be selected from (not working)
 
 
-        # def __init__(self, *args, **kwargs):
-        #         # Overrides default and set the screens id drop down box as empty
-        #         super().__init__(*args, **kwargs)
-        #         self.fields['screen_id'].queryset = Screen.objects.none()
+        def __init__(self, *args, **kwargs):
+                # Overrides default and set the screens id drop down box as empty
+                super().__init__(*args, **kwargs)
+                self.fields['screen_id'].queryset = Screen.objects.none()
 
-        #         # if 'venue_id' in self.data:
-        #         #         try:
-        #         #                 venue_id = int(self.data.get('venue_id'))
-        #         #                 self.fields['screen_id'].queryset = Screen.objects.filter(venue_id_id=venue_id)
-        #         #         except (ValueError, TypeError):
-        #         #                pass  # invalid input from the client; ignore and fallback to empty screen queryset
+                if 'venue_id' in self.data:
+                        #print("running")
+                        try:
+                               # print("running2")
+                                venue_id = self.data.get('venue_id')
+                               # print("running3")
+                                self.fields['screen_id'].queryset = Screen.objects.filter(venue_id=venue_id).order_by('screen_num')
+                                #print("running4")
+                        except (ValueError, TypeError):
+                                #print("running5")
+                                pass  # invalid input from the client; ignore and fallback to empty screen queryset
+                 
                         
-        #         # elif self.instance.pk:
-        #         #         self.fields['screen_id'].queryset = Screen.objects.filter(venue_id=self.instance.venue_id_id)     
+                # elif self.instance.pk:
+                #         self.fields['screen_id'].queryset = Screen.objects.filter(venue_id=self.instance.venue_id)     
 
-       
+                # if 'country' in self.data:
+                #         try:
+                #                 country_id = int(self.data.get('country'))
+                #                 self.fields['city'].queryset = City.objects.filter(country_id=country_id).order_by('name')
+                #         except (ValueError, TypeError):
+                  
+                #                 pass  # invalid input from the client; ignore and fallback to empty City queryset
+                # elif self.instance.pk:
+                #         self.fields['city'].queryset = self.instance.country.city_set.order_by('name')
 
 
 
