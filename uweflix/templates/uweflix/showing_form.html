@@ -20,17 +20,17 @@ Add a new venue
 
     <script>
       
-        $("#id_venue_id").change(function () {
-          var url = $("#showingsForm").attr("data-screens-url");  // get the url of the load_cities view
+        $("#id_venue_id").change(function () { //Note the ID before then field name is need for ajax to work
+          var url = $("#showingsForm").attr("data-screens-url");  // get the url of the load_screens view
           var venue_id = $(this).val(); // get the selected venu ID from the HTML input
     
           $.ajax({                       // initialize an AJAX request
-            url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+            url: url,                    // set the url of the request 
             data: {
               'venue_id': venue_id      // add the venue id to the GET parameters
             },
-            success: function (data) {   // data is the return of the load_cities view function
-              $("#id_screen_id").html(data);  // replace the contents of the city input with the data that came from the server
+            success: function (data) {   // data is the return of the load_screens view function
+              $("#id_screen_id").html(data);  // replace the contents of the screens input with the data that came from the server : Note the ID before then field name is need for ajax to work
             }
           });
         });

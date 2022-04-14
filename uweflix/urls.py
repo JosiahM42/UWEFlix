@@ -25,36 +25,12 @@ urlpatterns = [
     path("amendScreen/<screen_id>", views.amendScreen, name="amendScreen"),
 
     #Showing
-
-
-
     path('ajax/load-cities/', views.load_Screens, name='ajax_load_cities'),
     path('allShowing/', views.getAllShowing, name="allShowing"),
     path('addShowing/', views.showingCreateView.as_view(), name='addShowing'),
-
-    
     path("amendShowing/<showing_id>", views.amendShowing, name="amendShowing"),
     path("deleteShowing/<showing_id>", views.deleteShowing, name="deleteShowing"), 
     
-    
-    #path('<int:pk>/', views.showingUpdateView.as_view(), name='showingsChange'),
-
-
-
-    #path('ajax/load-cities/', views.load_cities, name='ajax_load_cities'),
-
-    
-
-
-
-
-    # path("addShowing/", views.addShowing, name="addShowing"),
-    # path("allShowing/", views.getAllShowing, name="allShowing"),
-    
-    
-
-    # path('ajax/load-screens/', views.load_Screens, name='ajax_screen_branches'),
-
 
     #Ticket system 
     path("tickets/<showing_id>", views.tickets, name="tickets"),
