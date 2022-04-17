@@ -366,7 +366,7 @@ def getTicketFromShowing(request, showing_id):
         if form.is_valid():
             message = form.save(commit=False)
             message.save()
-            return render(request, "uweflix/cinemaAdmin.html")
+            return render(request, "uweflix/checkout.html")
     else:
         return render(request, "uweflix/tickets.html", {"showing": showing, "form": form})
     

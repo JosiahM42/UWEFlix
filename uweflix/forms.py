@@ -5,7 +5,7 @@ from django import forms
 from uweflix.models import * # Film, Venue, Account, Screen, Showing
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from django.forms import  DateInput, TextInput, Textarea, DateTimeInput, TimeInput
+from django.forms import  DateInput, NumberInput, TextInput, Textarea, DateTimeInput, TimeInput
 
 
 class signUpForm(UserCreationForm):
@@ -150,7 +150,15 @@ class addShowingForm(forms.ModelForm):
 class purchaseTicketForm(forms.ModelForm):
         class Meta:
                 model = Ticket
-                fields = ("ticket_type",)
+                fields = ("ticket_type", "ticket_quantity",)
+
+                widgets = {
+                'ticket_quantity': NumberInput(attrs={
+                'class': "addScreenForm",
+                'style': 'max-width: 300px;',
+                'min': '1',
+                'max': '10',
+                })}
 
                 
 # class loginForm(forms.Form):

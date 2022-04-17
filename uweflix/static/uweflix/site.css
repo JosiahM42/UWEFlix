@@ -82,7 +82,7 @@
 /* Buttons */
 .amendButtons,
 .deleteButtons,
-.cinemaAdminButtons{
+.cinemaAdminButtons {
     align-items: center;
     background-clip: padding-box;
     border: 1px solid transparent;
@@ -112,7 +112,8 @@
 
 .amendButtons,
 .deleteButtons,
-.cinemaAdminButtons{
+.cinemaAdminButtons,
+input[type=submit]{
     background-color:  #c7c6c6;
 }
 
@@ -124,7 +125,7 @@
 
 .amendButtons:hover,
 .deleteButtons:hover,
-.cinemaAdminButtons:hover {
+.cinemaAdminButtons:hover{
   transform: translateY(-1px);
 }
 
@@ -133,3 +134,34 @@
   box-shadow: rgba(0, 0, 0, .06) 0 2px 4px;
   transform: translateY(0);
 } */
+
+input[type=text] {
+    padding:5px; 
+    border:2px solid #ccc; 
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+input[type=text]:focus {
+    border-color:#333;
+}
+
+input[type=submit] {
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+
+.nevermindButton{
+    padding: 0px 15px 4px; 
+    color : #151515;
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+    text-decoration: none;
+}
