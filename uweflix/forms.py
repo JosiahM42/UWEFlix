@@ -1,10 +1,11 @@
 from email import message
+from attr import field
 #from turtle import Screen
 from django import forms
 from uweflix.models import * # Film, Venue, Account, Screen, Showing
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from django.forms import  TextInput, Textarea, DateTimeInput
+from django.forms import  DateInput, TextInput, Textarea, DateTimeInput, TimeInput
 
 
 class signUpForm(UserCreationForm):
@@ -110,7 +111,18 @@ class addShowingForm(forms.ModelForm):
                 fields = ("showing_time","showing_date","film_id", "venue_id" , "screen_id",)
                 
                 #Styles Form boxes
-
+                widgets = {
+                'showing_date': DateInput(attrs={
+                'class': "addScreenForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'eg yyyy-mm-dd'
+                }),
+                'showing_time': TimeInput(attrs={
+                'class': "addScreenForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'eg hh:mm'
+                })}
+               
         # Code to get the relevent screen IDs for the selected venue ID and display it in the dropdown menu so be selected from (not working)
 
 
@@ -131,13 +143,16 @@ class addShowingForm(forms.ModelForm):
                  
                         
                 elif self.instance.pk:
-                         self.fields['screen_id'].queryset = Screen.objects.filter(venue_id=self.instance.venue_id)     
+                         self.fields['screen_id'].queryset = Screen.objects.filter(venue_id=self.instance.venue_id_id)     
 
        
 
+class purchaseTicketForm(forms.ModelForm):
+        class Meta:
+                model = Ticket
+                fields = ("ticket_type",)
 
-
-
+                
 # class loginForm(forms.Form):
 #         userName = forms.CharField(max_length=12)
 #         password = forms.PasswordInput()

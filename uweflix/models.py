@@ -59,16 +59,25 @@ class Seat(models.Model):
     
 class Showing(models.Model):
     showing_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
-    showing_time= models.CharField(max_length=25)
-    showing_date = models.CharField(max_length=25)
+    # showing_time= models.CharField(max_length=25)
+    # showing_date = models.CharField(max_length=25)
+    showing_time= models.TimeField()
+    showing_date = models.DateField()
     film_id = models.ForeignKey(Film, on_delete=models.CASCADE)
     venue_id = models.ForeignKey(Venue, on_delete=models.CASCADE)
     screen_id = models.ForeignKey(Screen, on_delete=models.CASCADE)
 
+
+ticketType= [
+    ('Standard','Standard'),
+    ('Club','Club'),
+    ('Student','Student'),
+    ]
+
 class Ticket(models.Model):
     ticket_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     ticket_price = models.FloatField()
-    ticket_type = models.CharField(max_length=10)
+    ticket_type = models.CharField(max_length=10, choices=ticketType)
     showing_id = models.ForeignKey(Showing, on_delete=models.CASCADE)
 
 class Account(AbstractUser):

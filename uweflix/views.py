@@ -352,13 +352,25 @@ def load_Screens(request):
 
     return render(request, 'uweflix/screenDropdownList.html', {'screen_id_list': screen_id})
 
-# def load_cities(request):
 
-#     print("Testing")
-#     venue_id = request.GET.get('venue_id')
-#     print(venue_id)
-#     screen_id  = Screen.objects.filter(venue_id=venue_id).all()
-#     return render(request, 'uweflix/city_dropdown_list_options.html', {'cities': screen_id})
+
+#tickets
+def getTicketFromShowing(request, showing_id):
+
+    form = purchaseTicketForm(request.POST or None)
+
+    showing = Showing.objects.get(pk=showing_id)
+
+    if request.method == "POST":
+        print("temp")
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.save()
+            return render(request, "uweflix/cinemaAdmin.html")
+    else:
+        return render(request, "uweflix/tickets.html", {"showing": showing, "form": form})
+    
+   
 
 
 # User Account Views

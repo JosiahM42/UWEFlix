@@ -33,7 +33,7 @@ urlpatterns = [
     
 
     #Ticket system 
-    path("tickets/<showing_id>", views.tickets, name="tickets"),
+    path("tickets/<showing_id>", views.getTicketFromShowing, name="tickets"),
 
     path("", views.home, name="home"),
     path("login/", views.loginRequest, name="login"),
