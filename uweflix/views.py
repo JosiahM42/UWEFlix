@@ -15,18 +15,14 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.contrib.auth import authenticate, login, logout
 
-<<<<<<< Updated upstream
 
-=======
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 from django.urls import reverse
->>>>>>> Stashed changes
 
 def home(request):
     return render(request, "uweflix/home.html")
 
-<<<<<<< Updated upstream
 def loginRequest(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -46,7 +42,9 @@ def loginRequest(request):
         else:
             messages.info(request, 'The username or password entered is incorrect, please try again')
             return redirect('login')
-=======
+    return render(request, "uweflix/login.html")   
+
+
 def editProfile(request):
     if request.method == 'POST':
         form = EditProfileForm(request.POST, instance=request.user)
@@ -77,9 +75,8 @@ def editProfile(request):
 #         else:
 #             messages.info(request, 'The username or password entered is incorrect, please try again')
 #             return redirect('login')
->>>>>>> Stashed changes
         
-    return render(request, "uweflix/login.html")
+    
 
 
 # def loginRequest(request):

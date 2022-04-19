@@ -1,12 +1,7 @@
 from email import message
 from django import forms
-<<<<<<< Updated upstream
-from uweflix.models import Film, Venue, Account
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
-=======
 from uweflix.models import Film, Venue, Account, Screen
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
->>>>>>> Stashed changes
 
 from django.forms import  TextInput, Textarea, PasswordInput
 
