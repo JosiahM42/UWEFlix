@@ -75,6 +75,7 @@ class Account(AbstractUser):
     is_cinema_admin = models.BooleanField(default=False)
     is_cinema_accounts = models.BooleanField(default=False)
     is_club = models.BooleanField(default=True)
+    is_customer = models.BooleanField(default=True)
     # is_active = models.BooleanField(default=True)
     # pass
     
@@ -83,14 +84,23 @@ class CinemaAdmin(models.Model):
     account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     is_social_distancing = models.BooleanField()
 
+    def __str__(self):
+        return f"{self.account_id}"
+
+class Token(models.Model):
+    quantity = models.IntegerField(default=0)
+    purchased_datetime =  models.DateTimeField("date logged")
+
 class Customer(models.Model):
-    first_name = models.CharField(max_length=50)
-    surname = models.CharField(max_length=50)
-    dob = models.DateField()
-    email =  models.CharField(max_length=50)
-    card_number =  models.IntegerField()
-    expiry_date = models.DateField()
-    token = models.IntegerField()
+    customer_name = models.CharField(max_length=50)
+    # surname = models.CharField(max_length=50)
+    # dob = models.DateField()
+    # email =  models.CharField(max_length=50)
+    account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True, blank=True)
+    token_id = models.ForeignKey(Token, on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.customer_name}"
 
 class Club(models.Model):
     club_name = models.CharField(max_length=50)
@@ -101,8 +111,10 @@ class Club(models.Model):
     phone = models.IntegerField()
     landline = models.IntegerField(null=True, blank=True)
     account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    customer_id = models.ForeignKey(Customer, on_delete=models.CASCADE)
-    token = models.IntegerField()
+    # credit_number = models.IntegerField(default=0)
+
+    def __str__(self):
+        return f"{self.club_name}"
 
 class Booking(models.Model):
     # booking_id = models.AutoField(primary_key=True)
@@ -121,10 +133,6 @@ class AccountAdmin(models.Model):
     account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     club_discount = models.BooleanField(False)
 
+    def __str__(self):
+        return f"{self.account_id}"
 
-class Token(models.Model):
-    pound = models.IntegerField(default=0)
-    credit_card_number = models.IntegerField(max_length=16)
-    validation = models.DateField()
-    cvv = models.IntegerField(max_length=3)
-    purchased_datetime =  models.DateTimeField("date logged")

@@ -102,30 +102,15 @@ class addScreenForm(forms.ModelForm):
         }
 
 class addTokenForm(forms.ModelForm):
-        class Meta:
-                model = Token
-                fields = ("pound","credit_card_number","validation", "cvv") #
-                #Styles Form boxes
-                widgets = {
-                'pound': TextInput(attrs={
+       class Meta:
+               model = Token
+               fields = ('quantity',)
+               
+               widgets = {
+                'quantity': TextInput(attrs={
                 'class': "addTokenForm",
                 'style': 'max-width: 300px;',
                 'placeholder': 'Amount of token to purchase'
-                }),
-                'credit_card_number': TextInput(attrs={
-                'class': "addTokenForm",
-                'style': 'max-width: 300px;',
-                'placeholder': '16-digit credit card number'
-                }),
-                'validation': TextInput(attrs={
-                'class': "addTokenForm",
-                'style': 'max-width: 300px;',
-                'placeholder': 'Date valid until'
-                }),
-                'cvv': TextInput(attrs={
-                'class': "addTokenForm",
-                'style': 'max-width: 300px;',
-                'placeholder': 'Eg, 123'
                 })
         }
 
