@@ -6,7 +6,7 @@ from uweflix.models import * # Film, Venue, Account, Screen, Showing
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.forms import  *
-
+from django.forms import ModelForm
 
 class signUpForm(UserCreationForm):
         #email = forms.EmailField(required=True)
@@ -50,7 +50,7 @@ class signUpForm(UserCreationForm):
 #         class Meta:
 #                 model = Account
 
-class clubRegistrationForm(forms.ModelForm):
+class clubRegistrationForm(ModelForm):
         class Meta:
                 model = Club
                 # fields = "__all__"
@@ -89,7 +89,7 @@ class clubRegistrationForm(forms.ModelForm):
                 }),
                 }
 
-class addFilmForm(forms.ModelForm):
+class addFilmForm(ModelForm):
         class Meta:
                 model = Film
                 fields = ("title","description", "age_rating", "duration",) #
@@ -112,7 +112,7 @@ class addFilmForm(forms.ModelForm):
                 })
         }
 
-class addVenueForm(forms.ModelForm):
+class addVenueForm(ModelForm):
         class Meta:
                 model = Venue
                 fields = ("name","street_address", "postcode", "city",) #
@@ -143,7 +143,7 @@ class addVenueForm(forms.ModelForm):
 
 
 
-class addScreenForm(forms.ModelForm):
+class addScreenForm(ModelForm):
         class Meta:
                 model = Screen
                 fields = ("venue_id", "screen_num", "capacity",)
@@ -165,7 +165,7 @@ class addScreenForm(forms.ModelForm):
 
 
 
-class addShowingForm(forms.ModelForm):
+class addShowingForm(ModelForm):
         class Meta:
                 model = Showing
                 fields = ("showing_time","showing_date","film_id", "venue_id" , "screen_id",)
@@ -207,7 +207,7 @@ class addShowingForm(forms.ModelForm):
 
 
 
-class purchaseTicketForm(forms.ModelForm):
+class purchaseTicketForm(ModelForm):
         class Meta:
                 model = Ticket
                 fields = ("ticket_type", "ticket_quantity",)
