@@ -1,10 +1,10 @@
 from email import message
 #from turtle import Screen
 from django import forms
-from uweflix.models import Film, Venue, Account, Screen
+from uweflix.models import Film, Venue, Account, Screen, Club
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from django.forms import  TextInput, Textarea, PasswordInput
+from django.forms import  TextInput, Textarea, PasswordInput, NumberInput, Select
 
 class signUpForm(UserCreationForm):
         #email = forms.EmailField(required=True)
@@ -15,7 +15,30 @@ class signUpForm(UserCreationForm):
                 fields =('username','email', 'password1', 'password2', 'is_club')
 
                 # if email were to be used as the unique identifier
-                # fields = ('email', 'password1', 'password2', 'is_club')
+
+                # widgets = {
+                # 'username': TextInput(attrs={
+                # 'class': "signUpForm",
+                # 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:50%',
+                # 'placeholder': 'Enter username...' 
+                # }),
+                # 'email': TextInput(attrs={
+                # 'class': "signUpForm",
+                # 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:50%',
+                # 'placeholder': 'Enter email...' 
+                # }),
+                # 'password1': PasswordInput(attrs={
+                # 'class': "signUpForm",
+                # 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:50%',
+                # 'placeholder': 'Enter password...' 
+                # }),
+                # 'password2': PasswordInput(attrs={
+                # 'class': "signUpForm",
+                # 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:50%',
+                # 'placeholder': 'Enter re-enter password...' 
+                # }),
+
+                # }
 
 
 # class loginForm(AuthenticationForm):
@@ -25,8 +48,44 @@ class signUpForm(UserCreationForm):
 #         class Meta:
 #                 model = Account
         
+class clubRegistrationForm(forms.ModelForm):
+        class Meta:
+                model = Club
+                # fields = "__all__"
+                fields =('club_name','street_address', 'postcode', 'city', 'phone', 'account_id')
 
-
+                widgets = {
+                'club_name': TextInput(attrs={
+                'class': "clubRegistrationForm",
+                'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:30%',
+                'placeholder': 'Enter club name...' 
+                }),
+                'street_address': TextInput(attrs={
+                      'class': "clubRegistrationForm",
+                'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:30%',
+                'placeholder': 'Enter street address...' 
+                }),
+                'postcode': TextInput(attrs={
+                'class': "clubRegistrationForm",
+                'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:30%',
+                'placeholder': 'Enter postcode...' 
+                }),
+                'city': TextInput(attrs={
+                'class': "clubRegistrationForm",
+                'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:30%',
+                'placeholder': 'Enter city...' 
+                }),
+                'phone': NumberInput(attrs={
+                'class': "clubRegistrationForm",
+                'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:30%',
+                'placeholder': 'Enter club phone number...' 
+                }),
+                'account_id': Select(attrs={
+                'class': "clubRegistrationForm",
+                'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:20%',
+                'placeholder': 'Account' 
+                }),
+                }
 
 class addFilmForm(forms.ModelForm):
         class Meta:

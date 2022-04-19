@@ -15,6 +15,10 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.contrib.auth import authenticate, login, logout
 
+# from django.contrib.auth.models import 
+
+from .models import Account
+
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 
@@ -83,13 +87,12 @@ def logoutRequest(request):
     return redirect('login')
 
 def signupRequest(request):
-    #form = UserCreationForm()
     form = signUpForm()
     context = {'form': form}
 
     if request.method == 'POST':
         form = signUpForm(request.POST)
-        # form = UserCreationForm(request.POST)
+    
         if form.is_valid():
             form.save()
 
@@ -97,16 +100,46 @@ def signupRequest(request):
             password = form.cleaned_data.get('password1')
 
             newUser = authenticate(request, username=username, password=password)
+            newUser.is_active = False
+            
+            newUser.save()
 
-            login(request, newUser)
-            messages.success(request, 'New user account has been created {username}')
+            if newUser is not None:
+                messages.success(request, 'New user account has been created {username}')
+            else:
+                messages.success(request, 'Error found during new user account generation')
+
             return redirect("home")
         else:
             messages.success(request, 'Password is too short, please enter an 8 mixed character password ')
             
-            
 
     return render(request, "uweflix/signup.html", context)
+
+
+# Club Sign Up
+
+def clubRegistrationRequest(request):
+    if request.method == 'POST':
+        registrationForm = clubRegistrationForm(request.POST) 
+    
+        if registrationForm.is_valid():
+            registrationForm.save()
+            messages.success(request, ('Club has been registered'))
+        elif registrationForm.is_valid() == False:
+            pass
+        return redirect("clubRegister")
+            
+    else:
+        registrationForm = clubRegistrationForm() 
+
+    return render(request, "uweflix/clubRegistration.html", {'clubForm': registrationForm})
+
+def userActivationRequest(request):
+    allUsers = Account.objects.filter(is_customer=True).get()
+    # clubUsers = allUsers.filter(User.is_club)
+    return render(request, "uweflix/activationRequest.html", {"newUser": allUsers})
+
 
 def tickets(request):
     return render(request, "uweflix/tickets.html")

@@ -143,3 +143,29 @@
     background-color: #2F3238;
     color: white;
 }
+/* .clubRegi{
+    float:left;
+    padding-left: 400px;
+} */
+
+/* div.register{
+    float: left;
+    width: 50%;
+}
+div.register > div{
+    top: 5%;
+    margin-right: 10px;
+    height: 100px;
+    box-sizing: border-box;
+    text-align: center;
+    border: 1px solid;
+}
+.submit{
+    margin: 0;
+    width: 20%;
+    height: 4%;
+    top: 86%;
+    left: 63%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+} */
