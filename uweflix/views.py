@@ -15,11 +15,18 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.contrib.auth import authenticate, login, logout
 
+<<<<<<< Updated upstream
 
+=======
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+from django.urls import reverse
+>>>>>>> Stashed changes
 
 def home(request):
     return render(request, "uweflix/home.html")
 
+<<<<<<< Updated upstream
 def loginRequest(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -39,6 +46,38 @@ def loginRequest(request):
         else:
             messages.info(request, 'The username or password entered is incorrect, please try again')
             return redirect('login')
+=======
+def editProfile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("studentAccount"))
+    else:
+        form = EditProfileForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'uweflix/editProfile.html', args)
+    
+# def loginRequest(request):
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+
+#         attemptedUser = authenticate(request, username=username, password=password)
+
+#         if attemptedUser is not None:
+#             login(request, attemptedUser)
+
+#             if attemptedUser.is_club:
+#                 return redirect('studentAccount')
+#             elif attemptedUser.is_cinema_admin:
+#                 return redirect('cinemaAdmin')
+#             elif attemptedUser.is_cinema_accounts:
+#                 return redirect('accountAdmin')
+#         else:
+#             messages.info(request, 'The username or password entered is incorrect, please try again')
+#             return redirect('login')
+>>>>>>> Stashed changes
         
     return render(request, "uweflix/login.html")
 

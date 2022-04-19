@@ -1,21 +1,47 @@
 from email import message
 from django import forms
+<<<<<<< Updated upstream
 from uweflix.models import Film, Venue, Account
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+=======
+from uweflix.models import Film, Venue, Account, Screen
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
+>>>>>>> Stashed changes
 
 from django.forms import  TextInput, Textarea, PasswordInput
 
 class signUpForm(UserCreationForm): 
         #email = forms.EmailField(required=True)
-
         class Meta:
                 model = Account
                 # fields = "__all__"
-                fields =('username','email', 'password1', 'password2', 'is_club')
+                fields =('username',
+                         'first_name',
+                         'last_name',
+                         'email', 
+                         'password1', 
+                         'password2', 
+                         'is_club')
+        def save(self, commit=True):
+                Account = super(signUpForm, self).save(commit=False)
+                Account.first_name = self.cleaned_data['first_name']
+                Account.last_name = self.cleaned_data['last_name']
+                Account.email = self.cleaned_data['email']
 
+                if commit:
+                        Account.save()
+
+                return Account
                 # if email were to be used as the unique identifier
                 # fields = ('email', 'password1', 'password2', 'is_club')
-
+#Edit profile                
+class EditProfileForm(UserChangeForm):
+    class Meta:
+        model = Account
+        fields = ('username',
+                  'first_name',
+                  'last_name',
+                  'email')
 
 # class loginForm(AuthenticationForm):
 #         username = forms.CharField(widget=forms.TextInput())
@@ -23,8 +49,6 @@ class signUpForm(UserCreationForm):
 
 #         class Meta:
 #                 model = Account
-
-
 
 class addFilmForm(forms.ModelForm):
         class Meta:

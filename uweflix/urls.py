@@ -34,6 +34,6 @@ urlpatterns = [
     path("addVenues/", views.addVenues, name="addVenues"),
     path("allVenues/", views.allVenues, name="allVenues"),
 
-
+    path("editProfile/", views.editProfile, name="editProfile"),    
 
 ]
