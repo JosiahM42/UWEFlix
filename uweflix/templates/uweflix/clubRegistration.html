@@ -1,0 +1,46 @@
+{% extends "uweflix/layout.html" %}
+{% block title %}
+Create an Account
+{% endblock %}
+{% block content %}
+    <h2>Club Registration</h2>
+
+
+    <form method="POST" id="clubReg" action="">
+        {% csrf_token %}
+    
+        <table class="addFilmsForm">
+            {{clubForm.club_name.label}}
+            {{clubForm.club_name}}
+            <br>
+            {{clubForm.street_address.label}}
+            {{clubForm.street_address}}
+            <br>
+            {{clubForm.postcode.label}}
+            {{clubForm.postcode}}
+            <br>
+            {{clubForm.city.label}}
+            {{clubForm.city}}
+            <br>
+            {{clubForm.phone.label}}
+            {{clubForm.phone}}
+            <br>
+            {{clubForm.account_id.label}}
+            {{clubForm.account_id}}
+            <br>
+            
+        </table>
+        
+        <input type="submit" name="Register Club">
+        
+    </form>
+
+    
+    <br>
+    <p>{{errorMessage}}</p>
+    <!-- {% for errorMessage in messages %}
+    <p>{{errorMessage}}</p>
+    {% endfor %} -->
+
+    <p class="">Sign up page for the UWEFlix cinema booking system.</p>
+{% endblock %} 

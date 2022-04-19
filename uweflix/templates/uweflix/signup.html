@@ -6,9 +6,9 @@ Create an Account
     <h2>Club Registration</h2>
 
 
-    <form method="POST" action="">
+    <form method="POST" id="repReg" action="">
         {% csrf_token %}
-        <!-- {{form.as_p}} -->
+            
         <table class="addFilmsForm">
             {{form.username.label}}
             {{form.username}}
@@ -27,11 +27,12 @@ Create an Account
         <input type="submit" name="Register User">
         <!-- <button type="submit">Sign Up</button> -->
     </form>
+    
     <br>
     <p>{{errorMessage}}</p>
     <!-- {% for errorMessage in messages %}
     <p>{{errorMessage}}</p>
     {% endfor %} -->
 
-    <p>Sign up page for the UWEFlix cinema booking system.</p>
+    <p class="">Sign up page for the UWEFlix cinema booking system.</p>
 {% endblock %} 
