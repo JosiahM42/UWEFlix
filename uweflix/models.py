@@ -26,6 +26,9 @@ class Film(models.Model):
     age_rating =  models.CharField(max_length=3, choices=Age_rating_UK)
     duration = models.DurationField(max_length=8)
 
+    def __str__(self):
+	    return self.title
+
 class Venue(models.Model):
     venue_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     name =  models.CharField(max_length=25)
@@ -43,25 +46,41 @@ class Screen(models.Model):
     screen_num = models.IntegerField(max_length=2)
     capacity = models.IntegerField(max_length=3)
     is_full = models.BooleanField(default=False)
-    
+
+    def __str__(self):
+	    return str(self.screen_num)
+
 
 class Seat(models.Model):
     seat_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     screen_id = models.ForeignKey(Screen, on_delete=models.CASCADE)
     seat_number = models.IntegerField()
 
-    
+
 class Showing(models.Model):
     showing_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
-    showing_datetime = models.DateTimeField("date logged")
+    # showing_time= models.CharField(max_length=25)
+    # showing_date = models.CharField(max_length=25)
+    showing_time= models.TimeField()
+    showing_date = models.DateField()
     film_id = models.ForeignKey(Film, on_delete=models.CASCADE)
+    venue_id = models.ForeignKey(Venue, on_delete=models.CASCADE)
     screen_id = models.ForeignKey(Screen, on_delete=models.CASCADE)
+
+
+ticketType= [
+    ('Standard','Standard'),
+    ('Club','Club'),
+    ('Student','Student'),
+    ]
 
 class Ticket(models.Model):
     ticket_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     ticket_price = models.FloatField()
-    ticket_type = models.CharField(max_length=10)
+    ticket_type = models.CharField(max_length=10, choices=ticketType)
+    ticket_quantity = models.IntegerField(default=1)
     showing_id = models.ForeignKey(Showing, on_delete=models.CASCADE)
+
 
 class Account(AbstractUser):
 
@@ -78,7 +97,7 @@ class Account(AbstractUser):
     is_customer = models.BooleanField(default=True)
     # is_active = models.BooleanField(default=True)
     # pass
-    
+
 
 class CinemaAdmin(models.Model):
     account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -134,4 +153,3 @@ class AccountAdmin(models.Model):
 
     def __str__(self):
         return f"{self.account_id}"
-

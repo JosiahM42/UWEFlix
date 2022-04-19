@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import *
 
-#Forms 
+#Forms
 from uweflix.forms import *
 
 #models
@@ -15,11 +15,20 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.contrib.auth import authenticate, login, logout
 
-# from django.contrib.auth.models import 
+# from django.contrib.auth.models import
+
+from django.views.generic import *
+
+from django.urls import *
 
 from .models import Account
 
 from django.contrib.auth.decorators import login_required, user_passes_test
+
+def home(request):
+    showingList = Showing.objects.all()
+
+    return render(request, "uweflix/home.html", {'showingList': showingList})
 
 
 
@@ -45,7 +54,7 @@ def home(request):
 #         else:
 #             messages.info(request, 'The username or password entered is incorrect, please try again')
 #             return redirect('login')
-        
+
 #     return render(request, "uweflix/login.html")
 
 def guestLoginRequest(request):
@@ -78,7 +87,7 @@ def loginRequest(request):
             else:
                 messages.info(request, 'The username or password entered is incorrect, please try again')
                 return redirect('login')
-        
+
     return render(request, "uweflix/login.html", context)
 
 
@@ -92,7 +101,7 @@ def signupRequest(request):
 
     if request.method == 'POST':
         form = signUpForm(request.POST)
-    
+
         if form.is_valid():
             form.save()
 
@@ -101,7 +110,7 @@ def signupRequest(request):
 
             newUser = authenticate(request, username=username, password=password)
             newUser.is_active = False
-            
+
             newUser.save()
 
             if newUser is not None:
@@ -112,7 +121,7 @@ def signupRequest(request):
             return redirect("home")
         else:
             messages.success(request, 'Password is too short, please enter an 8 mixed character password ')
-            
+
 
     return render(request, "uweflix/signup.html", context)
 
@@ -121,17 +130,17 @@ def signupRequest(request):
 
 def clubRegistrationRequest(request):
     if request.method == 'POST':
-        registrationForm = clubRegistrationForm(request.POST) 
-    
+        registrationForm = clubRegistrationForm(request.POST)
+
         if registrationForm.is_valid():
             registrationForm.save()
             messages.success(request, ('Club has been registered'))
         elif registrationForm.is_valid() == False:
             pass
         return redirect("clubRegister")
-            
+
     else:
-        registrationForm = clubRegistrationForm() 
+        registrationForm = clubRegistrationForm()
 
     return render(request, "uweflix/clubRegistration.html", {'clubForm': registrationForm})
 
@@ -141,7 +150,8 @@ def userActivationRequest(request):
     return render(request, "uweflix/activationRequest.html", {"newUser": allUsers})
 
 
-def tickets(request):
+def tickets(request, id):
+
     return render(request, "uweflix/tickets.html")
 
 def checkout(request):
@@ -219,7 +229,7 @@ def amendFilm(request, id):
     if form.is_valid():
         form.save()
         return redirect("allFilms")
-    
+
     else:
         return render(request, "uweflix/amendFilms.html", {"film": film, "form": form})
 
@@ -262,7 +272,7 @@ def amendVenue(request, venue_id):
     if form.is_valid():
         form.save()
         return redirect("allVenues")
-    
+
     else:
         return render(request, "uweflix/amendVenues.html", {"Venue": venue, "form": form})
 
@@ -308,13 +318,106 @@ def amendScreen(request, screen_id):
     if form.is_valid():
         form.save()
         return redirect("allScreen")
-    
+
     else:
         return render(request, "uweflix/amendScreen.html", {"Venue": screen, "form": form})
 
+# ===== Showing Details CRUD =====
+# Add screen from form
+
+def addShowing(request):
+
+    form = addShowingForm(request.POST or None)
+
+    if request.method == "POST":
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.save()
+            return render(request, "uweflix/cinemaAdmin.html")
+    else:
+        return render(request, "uweflix/addShowings.html", {"form": form})
+
+
+# deletes screen on request
+def deleteShowing(request, showing_id):
+
+    showing = Showing.objects.get(pk=showing_id)
+    showing.delete()
+
+    return redirect("allShowing")
+
+# Gets all screens in the system to be displayed
+def getAllShowing(request):
+
+    showingList = Showing.objects.all()
+
+    return render(request, 'uweflix/allShowing.html', {'showingList': showingList})
+
+# amend a screens details
+def amendShowing(request, showing_id):
+
+    showing = Showing.objects.get(pk=showing_id)
+
+    form = addShowingForm(request.POST or None, instance=showing)
+
+    if form.is_valid():
+        form.save()
+        return redirect("allShowing")
+
+    else:
+        return render(request, "uweflix/amendShowing.html", {"Showing": showing, "form": form})
 
 
 
+
+# Drop down box for showings form
+
+class showingListView(ListView):
+    model = Showing
+    template_name = 'uweflix/addShowings.html'
+    context_object_name = 'showingList'
+
+class showingCreateView(CreateView):
+    model = Showing
+    form_class = addShowingForm
+    success_url = reverse_lazy('cinemaAdmin')
+
+
+class showingUpdateView(UpdateView):
+    model = Showing
+    form_class = addShowingForm
+    success_url = reverse_lazy('cinemaAdmin')
+
+
+# AJAX Code for showing form
+def load_Screens(request):
+
+    venue_id = request.GET.get('venue_id')
+    screen_id  = Screen.objects.filter(venue_id=venue_id).all()
+
+    return render(request, 'uweflix/screenDropdownList.html', {'screen_id_list': screen_id})
+
+
+
+#tickets
+def getTicketFromShowing(request, showing_id):
+
+    user_id = None
+
+    form = purchaseTicketForm(request.POST or None)
+
+    showing = Showing.objects.get(pk=showing_id)
+
+
+
+    if request.method == "POST":
+        print("temp")
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.save()
+            return render(request, "uweflix/checkout.html")
+    else:
+        return render(request, "uweflix/tickets.html", {"showing": showing, "form": form})
 
 
 
@@ -324,4 +427,3 @@ def amendScreen(request, screen_id):
 #     form = signUpForm()
 #     context = {'form': form}
 #     return render(request, "uweflix/signup.html", context)
-        

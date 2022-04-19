@@ -1,0 +1,42 @@
+{% extends "uweflix/layout.html" %}
+{% block title %}
+Amend Venue
+{% endblock %}
+{% block content %}
+
+<p>Welcome to the amend showings for the UWEFlix cinema booking system. Please amend the selected showing</p>
+
+<form method="post" id="showingsForm" class="addShowing" data-screens-url="{% url 'ajax_load_cities' %}" novalidate>
+    {% csrf_token %}
+    <table class="addingForms">
+    {{ form }} 
+    </table>
+    <input type="submit" value="Amend Showing">
+    <a class = "nevermindButton" href="{% url 'allShowing' %}">Nevermind</a>
+  </form>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+  <script>
+    
+      $("#id_venue_id").change(function () {
+        var url = $("#showingsForm").attr("data-screens-url");  
+        var venue_id = $(this).val(); // get the selected venue ID from the HTML input
+  
+        $.ajax({                       // initialize an AJAX request
+          url: url,                    // set the url of the request 
+          data: {
+            'venue_id': venue_id      // add the venue id to the GET parameters
+          },
+          success: function (data) {   // data is the return of the load_screens view function
+            $("#id_screen_id").html(data);  // replace the contents of the screens input with the data that came from the server
+          }
+        });
+      });
+
+  </script>
+  
+  
+  <br>
+
+{% endblock %}

@@ -3,8 +3,30 @@
 Login
 {% endblock %}
 {% block content %}
-<p>This is the tempalte for the tickets/booking page for the UWEFlix cinema booking system.</p>
+<p>Purchasing Ticket </p>
 
-<a href="{% url 'checkout' %}" class="navbar-item">Checkout</a>
+
+<form method="POST" class="purchaseTicket">
+    {% csrf_token %}
+    <table class="addFilmsForm">
+        Film:  {{showing.film_id}}
+        <br>
+        Location:  {{showing.venue_id}} 
+        <br>
+        Showing Time & Date:  {{showing.showing_time}} on the {{showing.showing_date|date:"d/m/Y" }}
+        <br>
+        <br>
+
+    {{ form }} 
+    </table>
+
+    <br>
+    <input type="submit" value="Purchase Tickets">
+    <a class = "nevermindButton" href="{% url 'home' %}">Nevermind</a>
+</form>
+
+
+
+<!-- <a href="{% url 'checkout' %}" class="navbar-item">Checkout</a> -->
 
 {% endblock %}

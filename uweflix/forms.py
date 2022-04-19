@@ -1,10 +1,12 @@
 from email import message
+from attr import field
 #from turtle import Screen
 from django import forms
-from uweflix.models import Film, Venue, Account, Screen, Club
+from uweflix.models import * # Film, Venue, Account, Screen, Showing
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from django.forms import  TextInput, Textarea, PasswordInput, NumberInput, Select
+from django.forms import  *
+
 
 class signUpForm(UserCreationForm):
         #email = forms.EmailField(required=True)
@@ -20,22 +22,22 @@ class signUpForm(UserCreationForm):
                 # 'username': TextInput(attrs={
                 # 'class': "signUpForm",
                 # 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:50%',
-                # 'placeholder': 'Enter username...' 
+                # 'placeholder': 'Enter username...'
                 # }),
                 # 'email': TextInput(attrs={
                 # 'class': "signUpForm",
                 # 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:50%',
-                # 'placeholder': 'Enter email...' 
+                # 'placeholder': 'Enter email...'
                 # }),
                 # 'password1': PasswordInput(attrs={
                 # 'class': "signUpForm",
                 # 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:50%',
-                # 'placeholder': 'Enter password...' 
+                # 'placeholder': 'Enter password...'
                 # }),
                 # 'password2': PasswordInput(attrs={
                 # 'class': "signUpForm",
                 # 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:50%',
-                # 'placeholder': 'Enter re-enter password...' 
+                # 'placeholder': 'Enter re-enter password...'
                 # }),
 
                 # }
@@ -47,7 +49,7 @@ class signUpForm(UserCreationForm):
 
 #         class Meta:
 #                 model = Account
-        
+
 class clubRegistrationForm(forms.ModelForm):
         class Meta:
                 model = Club
@@ -58,32 +60,32 @@ class clubRegistrationForm(forms.ModelForm):
                 'club_name': TextInput(attrs={
                 'class': "clubRegistrationForm",
                 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:30%',
-                'placeholder': 'Enter club name...' 
+                'placeholder': 'Enter club name...'
                 }),
                 'street_address': TextInput(attrs={
                       'class': "clubRegistrationForm",
                 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:30%',
-                'placeholder': 'Enter street address...' 
+                'placeholder': 'Enter street address...'
                 }),
                 'postcode': TextInput(attrs={
                 'class': "clubRegistrationForm",
                 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:30%',
-                'placeholder': 'Enter postcode...' 
+                'placeholder': 'Enter postcode...'
                 }),
                 'city': TextInput(attrs={
                 'class': "clubRegistrationForm",
                 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:30%',
-                'placeholder': 'Enter city...' 
+                'placeholder': 'Enter city...'
                 }),
                 'phone': NumberInput(attrs={
                 'class': "clubRegistrationForm",
                 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:30%',
-                'placeholder': 'Enter club phone number...' 
+                'placeholder': 'Enter club phone number...'
                 }),
                 'account_id': Select(attrs={
                 'class': "clubRegistrationForm",
                 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:20%',
-                'placeholder': 'Account' 
+                'placeholder': 'Account'
                 }),
                 }
 
@@ -163,21 +165,60 @@ class addScreenForm(forms.ModelForm):
 
 
 
+class addShowingForm(forms.ModelForm):
+        class Meta:
+                model = Showing
+                fields = ("showing_time","showing_date","film_id", "venue_id" , "screen_id",)
+
+                #Styles Form boxes
+                widgets = {
+                'showing_date': DateInput(attrs={
+                'class': "addScreenForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'eg yyyy-mm-dd'
+                }),
+                'showing_time': TimeInput(attrs={
+                'class': "addScreenForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'eg hh:mm'
+                })}
+
+        # Code to get the relevent screen IDs for the selected venue ID and display it in the dropdown menu so be selected from (not working)
+
+
+        def __init__(self, *args, **kwargs):
+                # Overrides default and set the screens id drop down box as empty
+                super().__init__(*args, **kwargs)
+                self.fields['screen_id'].queryset = Screen.objects.none()
+
+                if 'venue_id' in self.data:
+
+                        try:
+                                venue_id = self.data.get('venue_id')
+                                self.fields['screen_id'].queryset = Screen.objects.filter(venue_id=venue_id).order_by('screen_num')
+
+                        except (ValueError, TypeError):
+
+                                pass  # invalid input from the client; ignore and fallback to empty screen queryset
+
+
+                elif self.instance.pk:
+                         self.fields['screen_id'].queryset = Screen.objects.filter(venue_id=self.instance.venue_id_id)
 
 
 
+class purchaseTicketForm(forms.ModelForm):
+        class Meta:
+                model = Ticket
+                fields = ("ticket_type", "ticket_quantity",)
 
-
-
-
-
-
-
-
-
-
-
-
+                widgets = {
+                'ticket_quantity': NumberInput(attrs={
+                'class': "addScreenForm",
+                'style': 'max-width: 300px;',
+                'min': '1',
+                'max': '10',
+                })}
 
 
 # class loginForm(forms.Form):
