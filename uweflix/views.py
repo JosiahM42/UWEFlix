@@ -342,12 +342,9 @@ class showingUpdateView(UpdateView):
 
 
 # AJAX Code for showing form
-# Bug (seems to bever run)
 def load_Screens(request):
 
-    print("Hello?")
     venue_id = request.GET.get('venue_id')
-    print(venue_id)
     screen_id  = Screen.objects.filter(venue_id=venue_id).all()
 
     return render(request, 'uweflix/screenDropdownList.html', {'screen_id_list': screen_id})
@@ -357,9 +354,13 @@ def load_Screens(request):
 #tickets
 def getTicketFromShowing(request, showing_id):
 
+    user_id = None
+
     form = purchaseTicketForm(request.POST or None)
 
     showing = Showing.objects.get(pk=showing_id)
+
+    
 
     if request.method == "POST":
         print("temp")

@@ -80,6 +80,7 @@ class Ticket(models.Model):
     ticket_type = models.CharField(max_length=10, choices=ticketType)
     ticket_quantity = models.IntegerField(default=1)
     showing_id = models.ForeignKey(Showing, on_delete=models.CASCADE)
+    
 
 class Account(AbstractUser):
 
