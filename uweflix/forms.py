@@ -2,46 +2,44 @@ from email import message
 from attr import field
 #from turtle import Screen
 from django import forms
-from uweflix.models import * # Film, Venue, Account, Screen, Showing
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from uweflix.models import Film, Venue, Account, Screen
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 
 from django.forms import  *
 from django.forms import ModelForm
 
 class signUpForm(UserCreationForm):
         #email = forms.EmailField(required=True)
-
         class Meta:
                 model = Account
                 # fields = "__all__"
-                fields =('username','email', 'password1', 'password2', 'is_club')
+                fields =('username',
+                         'first_name',
+                         'last_name',
+                         'email', 
+                         'password1', 
+                         'password2', 
+                         'is_club')
+        def save(self, commit=True):
+                Account = super(signUpForm, self).save(commit=False)
+                Account.first_name = self.cleaned_data['first_name']
+                Account.last_name = self.cleaned_data['last_name']
+                Account.email = self.cleaned_data['email']
 
+                if commit:
+                        Account.save()
+
+                return Account
                 # if email were to be used as the unique identifier
-
-                # widgets = {
-                # 'username': TextInput(attrs={
-                # 'class': "signUpForm",
-                # 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:50%',
-                # 'placeholder': 'Enter username...'
-                # }),
-                # 'email': TextInput(attrs={
-                # 'class': "signUpForm",
-                # 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:50%',
-                # 'placeholder': 'Enter email...'
-                # }),
-                # 'password1': PasswordInput(attrs={
-                # 'class': "signUpForm",
-                # 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:50%',
-                # 'placeholder': 'Enter password...'
-                # }),
-                # 'password2': PasswordInput(attrs={
-                # 'class': "signUpForm",
-                # 'style':'padding:8px;display:block;border:none;border-bottom:1px solid #ccc;width:50%',
-                # 'placeholder': 'Enter re-enter password...'
-                # }),
-
-                # }
-
+                # fields = ('email', 'password1', 'password2', 'is_club')
+#Edit profile                
+class EditProfileForm(UserChangeForm):
+    class Meta:
+        model = Account
+        fields = ('username',
+                  'first_name',
+                  'last_name',
+                  'email')
 
 # class loginForm(AuthenticationForm):
 #         username = forms.CharField(widget=forms.TextInput())

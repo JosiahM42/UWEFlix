@@ -55,6 +55,6 @@ urlpatterns = [
     # path("addScreen/", views.addScreen, name="addScreen"),
     # path("allScreen/", views.allScreen, name="allScreen"),
 
-
+    path("editProfile/", views.editProfile, name="editProfile"),    
 
 ]

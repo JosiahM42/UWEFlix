@@ -31,6 +31,9 @@ def home(request):
     return render(request, "uweflix/home.html", {'showingList': showingList})
 
 
+from django.contrib.auth.decorators import login_required, user_passes_test
+
+from django.urls import reverse
 
 def home(request):
     return render(request, "uweflix/home.html")
@@ -54,6 +57,8 @@ def home(request):
 #         else:
 #             messages.info(request, 'The username or password entered is incorrect, please try again')
 #             return redirect('login')
+        
+    
 
 #     return render(request, "uweflix/login.html")
 

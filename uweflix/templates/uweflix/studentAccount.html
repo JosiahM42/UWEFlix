@@ -1,7 +1,6 @@
 {% extends "uweflix/layout.html" %}
-
 {% block title %}
-Student Account
+<title>Student Account</title>
 {% endblock %}
 {% block content %}
 <div class="container">
@@ -12,6 +11,10 @@ Student Account
     <p>Last name: {{ user.last_name }}</p>
     <p>Email: {{ user.email }}</p>
 </div>
+<a href="{% url 'editProfile' %}">Edit Profile</a>
+<br/>
 <a href="{% url 'logout' %}">Logout</a>
 {% endblock %}
 logout/ [name='logout']
+
+   
