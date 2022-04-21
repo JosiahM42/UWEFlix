@@ -170,7 +170,9 @@ class addTokenForm(forms.ModelForm):
                 'screen_num': TextInput(attrs={
                 'class': "addTokenForm",
                 'style': 'max-width: 300px;',
-                'placeholder': 'eg 1'
+                'placeholder': 'eg 10',
+                'min' : '10',
+                'max' : '100'
                 })
 
         }
