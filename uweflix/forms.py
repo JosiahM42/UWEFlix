@@ -2,7 +2,7 @@ from email import message
 from attr import field
 #from turtle import Screen
 from django import forms
-from uweflix.models import Film, Venue, Account, Screen
+from uweflix.models import *
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 
 from django.forms import  *

@@ -131,6 +131,21 @@ def signupRequest(request):
     return render(request, "uweflix/signup.html", context)
 
 
+
+def editProfile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect(reverse("studentAccount"))
+    else:
+        form = EditProfileForm(instance=request.user)
+        args = {'form': form}
+        return render(request, 'uweflix/editProfile.html', args)
+
+    return render(request, "uweflix/login.html")
+
+
 # Club Sign Up
 
 def clubRegistrationRequest(request):
