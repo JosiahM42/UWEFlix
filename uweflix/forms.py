@@ -1,7 +1,7 @@
 from email import message
 #from turtle import Screen
 from django import forms
-from uweflix.models import Film, Venue, Account, Screen, Club
+from uweflix.models import Film, Venue, Account, Screen, Club, Token
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.forms import  TextInput, Textarea, PasswordInput, NumberInput, Select
@@ -161,6 +161,19 @@ class addScreenForm(forms.ModelForm):
 
         }
 
+class addTokenForm(forms.ModelForm):
+        class Meta:
+                model = Token
+                fields = ("quantity",)
+
+                widgets = {
+                'screen_num': TextInput(attrs={
+                'class': "addTokenForm",
+                'style': 'max-width: 300px;',
+                'placeholder': 'eg 1'
+                })
+
+        }
 
 
 

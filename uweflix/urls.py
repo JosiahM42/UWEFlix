@@ -37,6 +37,7 @@ urlpatterns = [
     path("cinemaAdmin/", views.cinemaAdmin, name="cinemaAdmin"),
     path("accountAdmin/", views.accountAdmin, name="accountAdmin"),
     path("studentAccount/", views.studentAccount, name="studentAccount"),
+    path("tokenPayment/", views.addToken, name="tokenPayment"),
     path("addFilms/", views.addFilms, name="addFilms"),
     path("allFilms/", views.allFilms, name="allFilms"),
     path("addVenues/", views.addVenues, name="addVenues"),

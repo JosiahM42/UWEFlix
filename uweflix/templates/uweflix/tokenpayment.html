@@ -1,0 +1,20 @@
+{% extends "uweflix/studentAccount.html" %}
+{% block title %}
+Add Token
+{% endblock %}
+{% block content %}
+
+<p>How many token would you like to purchase? (1.00£ = 10 UWEBug)</p>
+
+    <form method="POST" class="tokenPayment">
+    {% csrf_token %}
+    <table class="addTokenForm">
+    <!-- .as_p refers to how it renders it -->
+    {{ form }} 
+    </table>
+    <input type="submit" value="Add Token">
+    </form>
+
+    <br>
+
+{% endblock %}
