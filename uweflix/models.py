@@ -89,7 +89,10 @@ class CinemaAdmin(models.Model):
 
 class Token(models.Model):
     quantity = models.IntegerField(default=0)
-    purchased_datetime =  models.DateTimeField("date logged")
+    purchased_datetime = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.quantity}"
 
 class Customer(models.Model):
     customer_name = models.CharField(max_length=50)

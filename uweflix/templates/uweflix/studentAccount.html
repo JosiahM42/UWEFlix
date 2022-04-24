@@ -11,7 +11,8 @@ Student Account
     <p>First name: {{ user.first_name }}</p>
     <p>Last name: {{ user.last_name }}</p>
     <p>Email: {{ user.email }}</p>
-    <p>Token: {{ user.token }}</p>
+    <p>Token: {{ user.quantity }}</p>
+    <a class="tokenButtons" href="{% url 'tokenPayment' %}" class="navbar-item">Add Token</a>
 </div>
 <a href="{% url 'logout' %}">Logout</a>
 {% endblock %}
