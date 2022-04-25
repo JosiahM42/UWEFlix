@@ -111,6 +111,7 @@ class Club(models.Model):
     phone = models.IntegerField()
     landline = models.IntegerField(null=True, blank=True)
     account_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    token_id = models.ForeignKey(Token, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         return f"{self.club_name}"
