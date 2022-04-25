@@ -24,7 +24,16 @@ urlpatterns = [
     path("deleteScreen/<screen_id>", views.deleteScreen, name="deleteScreen"),
     path("amendScreen/<screen_id>", views.amendScreen, name="amendScreen"),
 
+    #Showing
+    path('ajax/load-cities/', views.load_Screens, name='ajax_load_cities'),
+    path('allShowing/', views.getAllShowing, name="allShowing"),
+    path('addShowing/', views.showingCreateView.as_view(), name='addShowing'),
+    path("amendShowing/<showing_id>", views.amendShowing, name="amendShowing"),
+    path("deleteShowing/<showing_id>", views.deleteShowing, name="deleteShowing"), 
+    
 
+    #Ticket system 
+    path("tickets/<showing_id>", views.getTicketFromShowing, name="tickets"),
 
     path("", views.home, name="home"),
     path("login/", views.loginRequest, name="login"),
@@ -41,9 +50,11 @@ urlpatterns = [
     path("allFilms/", views.allFilms, name="allFilms"),
     path("addVenues/", views.addVenues, name="addVenues"),
     path("allVenues/", views.allVenues, name="allVenues"),
+    path("clubRegistration/", views.clubRegistrationRequest, name="clubRegister"),
+    path("activationRequest/", views.userActivationRequest, name="activateUser"),
     # path("addScreen/", views.addScreen, name="addScreen"),
     # path("allScreen/", views.allScreen, name="allScreen"),
 
-
+    path("editProfile/", views.editProfile, name="editProfile"),    
 
 ]

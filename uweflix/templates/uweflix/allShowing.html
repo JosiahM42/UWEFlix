@@ -1,0 +1,50 @@
+{% extends "uweflix/layout.html" %}
+{% block title %}
+All Screens
+{% endblock %}
+{% block content %}
+
+    <p>Welcome to the Showings page for the UWEFlix cinema booking system. Amend and delete showings as you see fit.</p>
+
+    <a class = "nevermindButton" href="{% url 'cinemaAdmin' %}">Back</a>
+
+    <h2>Showings List</h2>
+
+{% for showing in showingList %}
+
+    <div class="card">
+        <div class="card-header">
+        <strong>{{showing.film_id}}</strong> 
+        </div>
+        <div class="card-body">
+        <p class="card-text">
+
+            Location: {{showing.venue_id}}
+            <br>
+            Screen: {{showing.screen_id}}
+            <br>
+            Showing Time:  {{ showing.showing_time }}
+            <br>
+            Showing Date:  {{ showing.showing_date }}
+            <br>
+        
+
+        </p>
+
+        </div>
+
+        <div class="card-footer text-muted">
+
+            <a class="amendButtons" href="{% url 'amendShowing' showing.showing_id %}">Amend</a>
+
+            <a class="deleteButtons" href="{% url 'deleteShowing' showing.showing_id %}">Delete Showing</a>
+
+        </div>
+
+    </div> 
+
+    <br>
+
+    {% endfor %}
+
+{% endblock %}

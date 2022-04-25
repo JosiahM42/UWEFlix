@@ -12,24 +12,27 @@
     <body class ="body">
 
     <div class="navbar">
-        
+
         {% if request.user.is_authenticated %}
             <!-- <a href="{% url 'logout' %}" class="navbar-item">Logout</a> -->
-            <a href="{% url 'logout' %}" class="navbar-item">Logout</a>    
-        {% else %} 
+            <a href="{% url 'logout' %}" class="navbar-item">Logout</a>
+        {% else %}
             <a href="{% url 'login' %}" class="navbar-item">Login</a>
         {% endif %}
 
         {% if request.user.is_cinema_admin %}
             <a href="{% url 'cinemaAdmin' %}" class="navbar-logo"><img class="imageBanner" src="{% static 'uweflix/UWEFLIX_Logo.png' %}" alt="image" /></a>
-            <a href="{% url 'signup' %}" class="navbar-item">Club Registration</a>
-        {% elif request.user.is_cinema_accounts %}
+            <a href="{% url 'clubRegister' %}" class="navbar-item">Club Registration</a>
+            <a href="{% url 'activateUser' %}" class="navbar-item">Activate Accounts</a>
+            {% elif request.user.is_cinema_accounts %}
             <a href="{% url 'accountAdmin' %}" class="navbar-logo"><img class="imageBanner" src="{% static 'uweflix/UWEFLIX_Logo.png' %}" alt="image" /></a>
         {% else %}
             <a href="{% url 'home' %}" class="navbar-logo"><img class="imageBanner" src="{% static 'uweflix/UWEFLIX_Logo.png' %}" alt="image" /></a>
-        {% endif %}   
+        {% endif %}
 
         <!-- <a href="{% url 'logout' %}" class="navbar-item">Logout</a> -->
+
+        <a href="{% url 'signup' %}" class="navbar-item">Sign Up</a>
 
         {% if request.user.is_club %}
             <a href="{% url 'studentAccount' %}" class="account-icon"></ahref><img src="https://img.icons8.com/fluency-systems-regular/48/000000/guest-male.png"/></a>

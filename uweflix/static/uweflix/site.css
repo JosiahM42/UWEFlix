@@ -9,7 +9,7 @@
     color: #151515;
    /* padding: 10px 5px 10px 5px; */
     text-align: center;
-    
+
     border-radius: 5px;
 }
 
@@ -77,13 +77,13 @@
 
 .addingForms {
     vertical-align: top;
-    
+
 }
 
 /* Buttons */
 .amendButtons,
 .deleteButtons,
-.cinemaAdminButtons{
+.cinemaAdminButtons {
     align-items: center;
     background-clip: padding-box;
     border: 1px solid transparent;
@@ -113,7 +113,8 @@
 
 .amendButtons,
 .deleteButtons,
-.cinemaAdminButtons{
+.cinemaAdminButtons,
+input[type=submit]{
     background-color:  #c7c6c6;
 }
 
@@ -125,7 +126,7 @@
 
 .amendButtons:hover,
 .deleteButtons:hover,
-.cinemaAdminButtons:hover {
+.cinemaAdminButtons:hover{
   transform: translateY(-1px);
 }
 
@@ -135,6 +136,17 @@
   transform: translateY(0);
 } */
 
+/* input[type=text] {
+    padding:5px;
+    border:2px solid #ccc;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+input[type=text]:focus {
+    border-color:#333;
+} */
+
 .guest-login{
     font-variant: small-caps;
     margin-left: 300px;
@@ -142,4 +154,25 @@
     font-size: 1.8em;
     background-color: #2F3238;
     color: white;
+}
+
+
+input[type=submit] {
+    padding:5px 15px;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.nevermindButton{
+    padding: 0px 15px 4px;
+    color : #151515;
+    background:#ccc;
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    text-decoration: none;
 }
