@@ -114,7 +114,7 @@ def signupRequest(request):
             password = form.cleaned_data.get('password1')
 
             newUser = authenticate(request, username=username, password=password)
-            newUser.is_active = False
+            # newUser.is_active = False
 
             newUser.save()
 
