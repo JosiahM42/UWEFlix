@@ -31,10 +31,17 @@
         {% endif %}   
 
         <!-- <a href="{% url 'logout' %}" class="navbar-item">Logout</a> -->
-        
+        {% if request.user.is_customer %}
         <a href="{% url 'signup' %}" class="navbar-item">Sign Up</a>
+        {% endif %}
+
+        <!-- This will inform the  -->
+        {% if request.user.is_authenticated %}
+        Session timeout in <span id="sessionTimer">20:00</span> minutes
+        {% endif %}
 
         {% if request.user.is_club %}
+
             <a href="{% url 'studentAccount' %}" class="account-icon"></ahref><img src="https://img.icons8.com/fluency-systems-regular/48/000000/guest-male.png"/></a>
         {% endif %}
 
@@ -49,4 +56,23 @@
         </footer>
     </div>
     </body>
+
+    <script>
+        window.onload = () => {
+            var minutes = 19
+            var seconds = 60
+
+            setInterval(() => {
+                document.getElementById("sessionTimer").innerHTML = minutes + ":" + seconds
+                seconds -= 1
+                if (seconds == 00) {
+                    minutes -= 1
+                    seconds = 60
+                    if(minutes = 0) {
+                        minutes = 19
+                    }
+                }
+            }, 1000);
+        }
+    </script>
 </html>
