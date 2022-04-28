@@ -35,8 +35,17 @@ Home
 
     <!-- <p>hello, {{request.user}} </p> -->
     <br>
+
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
     <br>
 
-    <a class="cinemaAdminButtons" href="{% url 'logout' %}">Logout</a>
+    <!-- <a class="cinemaAdminButtons" href="{% url 'logout' %}">Logout</a> -->
 
 {% endblock %}
