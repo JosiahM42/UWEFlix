@@ -1,5 +1,15 @@
+from email.message import EmailMessage
 from django.shortcuts import render
 from django.http import *
+from matplotlib.pyplot import show
+
+#Gmail API
+
+from google.auth.transport.requests import Request
+from google.oauth2.credentials import Credentials
+from google_auth_oauthlib.flow import InstalledAppFlow
+from googleapiclient.discovery import build
+from googleapiclient.errors import HttpError
 
 #Forms
 from uweflix.forms import *
@@ -15,7 +25,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.contrib.auth import authenticate, login, logout
 
-# from django.contrib.auth.models import
+from django.contrib.auth.models import Group
 
 from django.views.generic import *
 
@@ -36,7 +46,9 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 from django.urls import reverse
 
 def home(request):
-    return render(request, "uweflix/home.html")
+    showingList = Showing.objects.all()
+
+    return render(request, "uweflix/home.html", {'showingList': showingList})
 
 # def loginRequest(request):
 #     if request.method == 'POST':
@@ -57,8 +69,8 @@ def home(request):
 #         else:
 #             messages.info(request, 'The username or password entered is incorrect, please try again')
 #             return redirect('login')
-        
-    
+
+
 
 #     return render(request, "uweflix/login.html")
 
@@ -114,9 +126,10 @@ def signupRequest(request):
             password = form.cleaned_data.get('password1')
 
             newUser = authenticate(request, username=username, password=password)
-            # newUser.is_active = False
 
             newUser.save()
+            saveGroup = Group.objects.get(name='ClubRepresentative')
+            saveGroup.user_Set.add(newUser)
 
             if newUser is not None:
                 messages.success(request, 'New user account has been created {username}')
@@ -175,7 +188,76 @@ def tickets(request, id):
     return render(request, "uweflix/tickets.html")
 
 def checkout(request):
-    return render(request, "uweflix/checkout.html")
+
+    bookingIsSuccessful = False
+
+    usersEmail = request.user.email
+
+    bookingID = "12345"
+
+    if bookingIsSuccessful == True:
+
+        Message = "Your order has been placed. You will receive a confirmation email shortly."
+
+        subject = "Uweflix Order Confirmation"
+
+        emailMessage = "Thank you for your order. Your order number is: " + str(bookingID) + "."
+
+        # emailMessageToBeSent = create_message("", usersEmail, subject, emailMessage)
+
+        # send_message(emailMessageToBeSent)
+
+        return render(request, "uweflix/checkout.html", {"Message": Message})
+
+    else:
+
+        Message = "Your order has not been placed, please re-start the ordering process and try again"
+
+        return render(request, "uweflix/checkout.html", {"Message": Message})
+
+
+#Gmail Api services for sending emails
+
+# def create_message(sender, to, subject, message_text):
+#   """Create a message for an email.
+
+#   Args:
+#     sender: Email address of the sender.
+#     to: Email address of the receiver.
+#     subject: The subject of the email message.
+#     message_text: The text of the email message.
+
+#   Returns:
+#     An object containing a base64url encoded email object.
+#   """
+#   message = MIMEText(message_text)
+#   message['to'] = to
+#   message['from'] = sender
+#   message['subject'] = subject
+#   return {'raw': base64.urlsafe_b64encode(message.as_string())}
+
+
+# def send_message(service, user_id, message):
+#   """Send an email message.
+
+#   Args:
+#     service: Authorized Gmail API service instance.
+#     user_id: User's email address. The special value "me"
+#     can be used to indicate the authenticated user.
+#     message: Message to be sent.
+
+#   Returns:
+#     Sent Message.
+#   """
+#   try:
+#     message = (service.users().messages().send(userId=user_id, body=message)
+#                .execute())
+#     print 'Message Id: %s' % message['id']
+#     return message
+
+#   except errors.HttpError, error:
+#     print 'An error occurred: %s' % error
+
 
 @login_required
 
@@ -230,9 +312,27 @@ def addFilm(request):
 def deleteFilm(request, id):
 
     film = Film.objects.get(pk=id)
-    film.delete()
 
-    return redirect("allFilms")
+    try:
+        showingsOfFilm = Showing.objects.get(film_id=film)
+    except:
+        showingsOfFilm = None
+
+    if (showingsOfFilm == None):
+        showingsOfFilmPresent = False
+    else:
+        showingsOfFilmPresent = True
+
+    if (showingsOfFilmPresent == True):
+
+        messages.info(request, 'Error: Sorry, you cannot delete this film as it has showings, Please delete the showings first')
+
+        return render(request, "uweflix/cinemaAdmin.html")
+
+    else:
+        film.delete()
+        return redirect("allFilms")
+
 
 # Gets all films in the system to be displayed
 def getAllFilms(request):
@@ -273,9 +373,27 @@ def addVenue(request):
 def deleteVenue(request, venue_id):
 
     venue = Venue.objects.get(pk=venue_id)
-    venue.delete()
 
-    return redirect("allVenues")
+    try:
+        showingsAtVenue = Showing.objects.get(venue_id=venue)
+    except:
+        showingsAtVenue = None
+
+    if (showingsAtVenue == None):
+        showingsOfVenuePresent = False
+    else:
+       showingsOfVenuePresent = True
+
+    if ( showingsOfVenuePresent == True):
+
+        messages.info(request, 'Error: Sorry, you cannot delete this venue as it has showings, Please delete the showings first')
+
+        return render(request, "uweflix/cinemaAdmin.html")
+
+    else:
+        venue.delete()
+        return redirect("allVenues")
+
 
 # Gets all venues in the system to be displayed
 def getAllVenues(request):
@@ -317,9 +435,28 @@ def addScreen(request):
 def deleteScreen(request, screen_id):
 
     screen = Screen.objects.get(pk=screen_id)
-    screen.delete()
 
-    return redirect("allScreen")
+    try:
+        showingsAtScreen= Showing.objects.get(screen_id=screen)
+    except:
+        showingsAtScreen = None
+
+    if (showingsAtScreen == None):
+        showingsAtScreenPresent = False
+    else:
+       showingsAtScreenPresent = True
+
+    if ( showingsAtScreenPresent == True):
+
+        messages.info(request, 'Error: Sorry, you cannot delete this screen as it has showings, Please delete the showings first')
+
+        return render(request, "uweflix/cinemaAdmin.html")
+
+    else:
+        screen.delete()
+        return redirect("allScreen")
+
+
 
 # Gets all screens in the system to be displayed
 def getAllScreens(request):
@@ -427,7 +564,6 @@ def getTicketFromShowing(request, showing_id):
     form = purchaseTicketForm(request.POST or None)
 
     showing = Showing.objects.get(pk=showing_id)
-
 
 
     if request.method == "POST":

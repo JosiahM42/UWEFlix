@@ -20,16 +20,16 @@ class signUpForm(UserCreationForm):
                          'password1', 
                          'password2', 
                          'is_club')
-        def save(self, commit=True):
-                Account = super(signUpForm, self).save(commit=False)
-                Account.first_name = self.cleaned_data['first_name']
-                Account.last_name = self.cleaned_data['last_name']
-                Account.email = self.cleaned_data['email']
+        # def save(self, commit=True):
+        #         Account = super(signUpForm, self).save(commit=False)
+        #         Account.first_name = self.cleaned_data['first_name']
+        #         Account.last_name = self.cleaned_data['last_name']
+        #         Account.email = self.cleaned_data['email']
 
-                if commit:
-                        Account.save()
+        #         if commit:
+        #                 Account.save()
 
-                return Account
+        #         return Account
                 # if email were to be used as the unique identifier
                 # fields = ('email', 'password1', 'password2', 'is_club')
 #Edit profile                

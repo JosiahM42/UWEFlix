@@ -9,7 +9,9 @@ Edit Profile
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Submit</button>
+        <input type="submit" value="Update Account">
+        
+        <a class = "nevermindButton" href="{% url 'studentAccount' %}">Nevermind</a>
     </form>
 </div>
 
