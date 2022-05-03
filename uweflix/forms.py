@@ -1,11 +1,20 @@
-from email import message
+# from email import message
+# #from turtle import Screen
+# from django import forms
+# from uweflix.models import Film, Venue, Account, Screen, Club
+# from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+
+# from django.forms import  TextInput, Textarea, PasswordInput, NumberInput, Select
+
+# from email import message
+# from attr import field
 #from turtle import Screen
 from django import forms
-from uweflix.models import Film, Venue, Account, Screen, Club
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from uweflix.models import *
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 
-from django.forms import  TextInput, Textarea, PasswordInput, NumberInput, Select
-
+from django.forms import  *
+from django.forms import ModelForm
 class signUpForm(UserCreationForm):
         #email = forms.EmailField(required=True)
 
@@ -48,11 +57,15 @@ class signUpForm(UserCreationForm):
 #         class Meta:
 #                 model = Account
         
-class clubRegistrationForm(forms.ModelForm):
+class clubRegistrationForm(ModelForm):
         class Meta:
                 model = Club
                 # fields = "__all__"
                 fields =('club_name','street_address', 'postcode', 'city', 'phone', 'account_id')
+
+                def __init__(self, *args,**kwargs):
+                        super (signUpForm,self ).__init__(*args,**kwargs)
+                        self.fields['account_id'].queryset = Account.objects.filter(is_club=True)
 
                 widgets = {
                 'club_name': TextInput(attrs={
@@ -87,7 +100,16 @@ class clubRegistrationForm(forms.ModelForm):
                 }),
                 }
 
-class addFilmForm(forms.ModelForm):
+class activateCustomerAccounts(ModelForm):
+        class Meta:
+                model = Account
+                fields = ('username','email', 'is_club', 'is_customer', 'is_active')
+
+        # def __init__(self, *args,**kwargs):
+        #         super (activateCustomerAccounts,self ).__init__(*args,**kwargs)
+        #         self.fields['username'].queryset = Account.objects.filter(is_club=True)
+
+class addFilmForm(ModelForm):
         class Meta:
                 model = Film
                 fields = ("title","description", "age_rating", "duration",) #
@@ -110,7 +132,7 @@ class addFilmForm(forms.ModelForm):
                 })
         }
 
-class addVenueForm(forms.ModelForm):
+class addVenueForm(ModelForm):
         class Meta:
                 model = Venue
                 fields = ("name","street_address", "postcode", "city",) #
@@ -141,7 +163,7 @@ class addVenueForm(forms.ModelForm):
 
 
 
-class addScreenForm(forms.ModelForm):
+class addScreenForm(ModelForm):
         class Meta:
                 model = Screen
                 fields = ("venue_id", "screen_num", "capacity",)

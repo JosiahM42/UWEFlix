@@ -15,7 +15,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.contrib.auth import authenticate, login, logout
 
-# from django.contrib.auth.models import 
+from django.contrib.auth.models import Group
 
 from .models import Account
 
@@ -100,8 +100,12 @@ def signupRequest(request):
             password = form.cleaned_data.get('password1')
 
             newUser = authenticate(request, username=username, password=password)
-            newUser.is_active = False
+            # newUser.is_active = False
+            newUser.is_club = True
             
+            saveGroup = Group.objects.get(name='ClubRepresentative')
+            saveGroup.user_set.add(newUser)
+
             newUser.save()
 
             if newUser is not None:
@@ -135,10 +139,11 @@ def clubRegistrationRequest(request):
 
     return render(request, "uweflix/clubRegistration.html", {'clubForm': registrationForm})
 
-def userActivationRequest(request):
-    allUsers = Account.objects.filter(is_customer=True).get()
-    # clubUsers = allUsers.filter(User.is_club)
-    return render(request, "uweflix/activationRequest.html", {"newUser": allUsers})
+def displayGroups(request):
+    allCustomers = Club.objects.all()
+
+    return render(request, "uweflix/clubs.html", {"allClubs": allCustomers})
+
 
 
 def tickets(request):

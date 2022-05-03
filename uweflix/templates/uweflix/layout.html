@@ -23,7 +23,7 @@
         {% if request.user.is_cinema_admin %}
             <a href="{% url 'cinemaAdmin' %}" class="navbar-logo"><img class="imageBanner" src="{% static 'uweflix/UWEFLIX_Logo.png' %}" alt="image" /></a>
             <a href="{% url 'clubRegister' %}" class="navbar-item">Club Registration</a>
-            <a href="{% url 'activateUser' %}" class="navbar-item">Activate Accounts</a>
+            <a href="{% url 'Clubs' %}" class="navbar-item">Active Clubs</a>
             {% elif request.user.is_cinema_accounts %}
             <a href="{% url 'accountAdmin' %}" class="navbar-logo"><img class="imageBanner" src="{% static 'uweflix/UWEFLIX_Logo.png' %}" alt="image" /></a>
         {% else %}
