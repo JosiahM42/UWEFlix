@@ -8,6 +8,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, User
 from django.forms import  *
 from django.forms import ModelForm
 
+from django.forms import  *
+from django.forms import ModelForm
 class signUpForm(UserCreationForm):
         #email = forms.EmailField(required=True)
         class Meta:
@@ -47,12 +49,16 @@ class EditProfileForm(UserChangeForm):
 
 #         class Meta:
 #                 model = Account
-
+        
 class clubRegistrationForm(ModelForm):
         class Meta:
                 model = Club
                 # fields = "__all__"
                 fields =('club_name','street_address', 'postcode', 'city', 'phone', 'account_id')
+
+                def __init__(self, *args,**kwargs):
+                        super (signUpForm,self ).__init__(*args,**kwargs)
+                        self.fields['account_id'].queryset = Account.objects.filter(is_club=True)
 
                 widgets = {
                 'club_name': TextInput(attrs={

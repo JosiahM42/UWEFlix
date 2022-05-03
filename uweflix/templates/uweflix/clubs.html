@@ -1,0 +1,33 @@
+{% extends "uweflix/layout.html" %}
+{% block title %}
+Activate User Accounts
+{% endblock %}
+{% block content %}
+<h2>Clubs</h2>
+
+<table>
+    <tr>
+      <th>club Name</th>
+      <th>Street Address</th>
+      <th>postcode</th>
+      <th>city</th>
+      <th>phone</th>
+      <th>Club Representative</th>
+    </tr>
+    {% for clubs in allClubs %}
+    <tr>
+        <td>{{clubs.club_name}}</td>
+        <td>{{clubs.street_address}}</td>
+        <td>{{clubs.postcode}}</td>
+        <td>{{clubs.city}}</td>
+        <td>{{clubs.phone}}</td>
+        <td>{{clubs.account_id}}</td>
+    </tr>
+    <!-- </form> -->
+    {% endfor %}
+</table>
+<!-- <input type="submit" name="Activate User" >
+</form> -->
+<br>
+<p class="">Sign up page for the UWEFlix cinema booking system.</p>
+{% endblock %} 

@@ -126,10 +126,9 @@ def signupRequest(request):
             password = form.cleaned_data.get('password1')
 
             newUser = authenticate(request, username=username, password=password)
-
-            newUser.is_active = False
+            # newUser.is_active = False
             newUser.is_club = True
-
+            
             saveGroup = Group.objects.get(name='ClubRepresentative')
             saveGroup.user_set.add(newUser)
 
@@ -181,10 +180,11 @@ def clubRegistrationRequest(request):
 
     return render(request, "uweflix/clubRegistration.html", {'clubForm': registrationForm})
 
-def userActivationRequest(request):
-    allUsers = Account.objects.filter(is_customer=True).get()
-    # clubUsers = allUsers.filter(User.is_club)
-    return render(request, "uweflix/activationRequest.html", {"newUser": allUsers})
+def displayGroups(request):
+    allCustomers = Club.objects.all()
+
+    return render(request, "uweflix/clubs.html", {"allClubs": allCustomers})
+
 
 
 def tickets(request, id):
