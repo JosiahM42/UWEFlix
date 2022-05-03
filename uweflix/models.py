@@ -76,7 +76,7 @@ ticketType= [
 
 class Ticket(models.Model):
     ticket_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
-    ticket_price = models.FloatField()
+    ticket_price = models.FloatField(default=0.00)
     ticket_type = models.CharField(max_length=10, choices=ticketType)
     ticket_quantity = models.IntegerField(default=1)
     showing_id = models.ForeignKey(Showing, on_delete=models.CASCADE)

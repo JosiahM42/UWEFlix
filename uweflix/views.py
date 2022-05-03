@@ -127,14 +127,18 @@ def signupRequest(request):
 
             newUser = authenticate(request, username=username, password=password)
 
-            newUser.save()
-            saveGroup = Group.objects.get(name='ClubRepresentative')
-            saveGroup.user_Set.add(newUser)
+            newUser.is_active = False
+            newUser.is_club = True
 
-            if newUser is not None:
-                messages.success(request, 'New user account has been created {username}')
-            else:
-                messages.success(request, 'Error found during new user account generation')
+            saveGroup = Group.objects.get(name='ClubRepresentative')
+            saveGroup.user_set.add(newUser)
+
+            newUser.save()
+
+            # if newUser is not None:
+            #     messages.success(request, 'New user account has been created {username}')
+            # else:
+            #     messages.success(request, 'Error found during new user account generation')
 
             return redirect("home")
         else:
@@ -189,7 +193,7 @@ def tickets(request, id):
 
 def checkout(request):
 
-    bookingIsSuccessful = False
+    bookingIsSuccessful = True
 
     usersEmail = request.user.email
 
@@ -199,9 +203,9 @@ def checkout(request):
 
         Message = "Your order has been placed. You will receive a confirmation email shortly."
 
-        subject = "Uweflix Order Confirmation"
+        # subject = "Uweflix Order Confirmation"
 
-        emailMessage = "Thank you for your order. Your order number is: " + str(bookingID) + "."
+        # emailMessage = "Thank you for your order. Your order number is: " + str(bookingID) + "."
 
         # emailMessageToBeSent = create_message("", usersEmail, subject, emailMessage)
 
@@ -567,11 +571,20 @@ def getTicketFromShowing(request, showing_id):
 
 
     if request.method == "POST":
-        print("temp")
         if form.is_valid():
             message = form.save(commit=False)
+
+            message.showing_id_id = showing.showing_id
             message.save()
-            return render(request, "uweflix/checkout.html")
+
+            bookingIsSuccessful = True
+
+            if bookingIsSuccessful == True:
+
+                messages.info(request, 'Your order has been placed. If you have provided us with an email you will receive a confirmation email shortly')
+
+                return render(request, "uweflix/checkout.html")
+
     else:
         return render(request, "uweflix/tickets.html", {"showing": showing, "form": form})
 
