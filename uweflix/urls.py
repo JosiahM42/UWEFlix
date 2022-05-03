@@ -35,6 +35,11 @@ urlpatterns = [
     #Ticket system 
     path("tickets/<showing_id>", views.getTicketFromShowing, name="tickets"),
 
+    #Booking system
+    path("checkout/<ticket_id>", views.checkout, name="checkout"),
+
+
+
     path("", views.home, name="home"),
     path("login/", views.loginRequest, name="login"),
     path("logout/", views.logoutRequest, name="logout"),
