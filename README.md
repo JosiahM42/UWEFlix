@@ -27,7 +27,7 @@ python manage.py runserver
 
 
 ### Key Login Details Required:
-<p>New users are able to be signed up and logged in through the system, however a view examples have been provided for your convince. </p>
+<p>New users are able to be signed up and logged in through the system, however a few examples have been provided for your convince. </p>
 <p> <strong>Note:</strong> These usersnamers and passwords are case sensitive. </p>
 
 #### Cinema Admin:
