@@ -4,7 +4,7 @@
 ## UWEFlix Django Web Application
 
 ### System Requirements
-To run the Django web application two nonstandard library must be installed, run 
+To run the Django web application two nonstandard libraries must be installed, run 
 
 ```
 pip install django-session-timeout
@@ -17,18 +17,18 @@ Then run,
 pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-oauthlib
 ```
 
-from the terminal to allow for the function required to use the Gmail API services that are intended to email users on successful booking.
+from the terminal to allow for the functions required to use the Gmail API services that are intended to email users on successful booking.
 
 ### Running the System
-From here the application can be run by running the following command from the terminal whilst in the UWEFLix Project Folder:
+From here the application can be run by running the following command from the terminal whilst in the UWEFLix Project Folder,
 ```
 python manage.py runserver
 ```
 
 
-### Key Login Details Required:
-<p>New users are able to be signed up and logged in through the system, however a few examples have been provided for your convince. </p>
-<p> <strong>Note:</strong> These usersnamers and passwords are case sensitive. </p>
+### Key Login Details:
+<p>New users can be signed up and logged in through the system, however a few examples have been provided for your convenience. </p>
+<p> <strong>Note:</strong> These usernames and passwords are case sensitive. </p>
 
 #### Cinema Admin:
 
@@ -50,8 +50,4 @@ python manage.py runserver
 <br>
 
 ## Design Work
-Please see the UWEFLix design work folder to view the design work for this project, including users stories, non-requirement, and database design.
-
-
-
-
+Please see the UWEFLix design work folder to view the design work for this project, including user stories, non-requirement, and database design.
