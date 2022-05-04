@@ -37,7 +37,7 @@ python manage.py runserver
 
 #### Account Admin:
 <p>Username: Accounts </p>
-<p>Password: ???? </p>
+<p>Password: AdminAcc </p>
 
 #### Example Students/ Student Reps:
 
