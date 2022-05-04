@@ -47,7 +47,6 @@ python manage.py runserver
 <p>Username: JebTheThird </p>
 <p>Password: Jeb123456789 </p>
 
-<br>
 
 ## Design Work
 Please see the UWEFLix design work folder to view the design work for this project, including user stories, non-requirement, and database design.
