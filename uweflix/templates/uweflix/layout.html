@@ -37,6 +37,8 @@
 
         {% elif request.user.is_cinema_admin %}
 
+        {% elif request.user.is_cinema_accounts %}
+
         {% else %}
         <a href="{% url 'signup' %}" class="navbar-item">Sign Up</a>
         {% endif %}
