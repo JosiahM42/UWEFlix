@@ -17,6 +17,31 @@ pip install --upgrade google-api-python-client google-auth-httplib2 google-auth-
 
 from the terminal to allow for the function required to use the Gmail API services that are intended to email users on successful booking.
 
+From here the application can be run by running the following command from the terminal whilst in the UWEFLix Project Folder:
+```
+python manage.py runserver
+```
+
+
+Key Login Details Required:
+New users are able to be signed up and login through the system, however a view examples have been provided for your convince.
+
+Cinema Admin:
+Username: Manager
+Password: AdminMan
+
+Account Admin:
+Username: Accounts
+Password: ????
+
+Example Students/ Student Reps:
+
+Username: movieLover42
+Password: Testing42
+
+Username: JebTheThird
+password: Jeb123456789
+
 
 
 ## Design Work

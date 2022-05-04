@@ -126,7 +126,7 @@ def signupRequest(request):
             password = form.cleaned_data.get('password1')
 
             newUser = authenticate(request, username=username, password=password)
-            # newUser.is_active = False
+
             newUser.is_club = True
             
             saveGroup = Group.objects.get(name='ClubRepresentative')
@@ -134,14 +134,11 @@ def signupRequest(request):
 
             newUser.save()
 
-            # if newUser is not None:
-            #     messages.success(request, 'New user account has been created {username}')
-            # else:
-            #     messages.success(request, 'Error found during new user account generation')
-
             return redirect("home")
         else:
-            messages.success(request, 'Password is too short, please enter an 8 mixed character password ')
+            messages.success(request, 'Invalid username or password. Usernames must be one consistant string and passwords must consist of at least 8 mixed characters')
+
+            return render(request, "uweflix/signup.html", context)
 
 
     return render(request, "uweflix/signup.html", context)

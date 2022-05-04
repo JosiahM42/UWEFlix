@@ -33,15 +33,18 @@
             <a href="{% url 'home' %}" class="navbar-logo"><img class="imageBanner" src="{% static 'uweflix/UWEFLIX_Logo.png' %}" alt="image" /></a>
         {% endif %}   
 
-        <!-- <a href="{% url 'logout' %}" class="navbar-item">Logout</a> -->
         {% if request.user.is_customer %}
+
+        {% elif request.user.is_cinema_admin %}
+
+        {% else %}
         <a href="{% url 'signup' %}" class="navbar-item">Sign Up</a>
         {% endif %}
 
         <!-- This will inform the  -->
-        {% if request.user.is_authenticated %}
+        <!-- {% if request.user.is_authenticated %}
         Session timeout in <span id="sessionTimer">20:00</span> minutes
-        {% endif %}
+        {% endif %} -->
 
     
     </div>
