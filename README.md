@@ -49,4 +49,4 @@ python manage.py runserver
 
 
 ## Design Work
-Please see the UWEFLix design work folder to view the design work for this project, including user stories, non-requirement, and database design.
+Please see the UWEFLix design work folder to view the design work for this project, including user stories, non functional requirements, and database design.
